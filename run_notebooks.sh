@@ -9,7 +9,7 @@ do
 	    then
 	    	pip install -r $folder/requirements.txt;
 	    fi;
-		jupyter nbconvert --execute $notebook;
+	   	python run_notebook.py $notebook;
 	done;
 done;
 	   
