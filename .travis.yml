@@ -18,6 +18,8 @@ env:
   #- PYTHON_VERSION=3.3
   #- PYTHON_VERSION=3.4
   - PYTHON_VERSION=3.5
+
+env:
   global:
   - ENCRYPTION_LABEL: "$encrypted_a3a89bfc08a4"
   - COMMIT_AUTHOR_EMAIL: "ibinbei@gmail.com"
