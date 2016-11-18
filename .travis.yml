@@ -30,7 +30,7 @@ before_install:
     chmod 600 github_deploy;
     eval `ssh-agent -s`;
     ssh-add github_deploy;
-  fi
+  fi;
 - wget https://github.com/mzwiessele/travis_scripts/raw/master/download_miniconda.sh
 - wget https://github.com/mzwiessele/travis_scripts/raw/master/install_retry.sh
 - source download_miniconda.sh
@@ -44,7 +44,7 @@ install:
 
 script:
   - bash run_notebooks.sh
-  if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    git push $SSH_REPO "$TRAVIS_BRANCH";
-  fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      git push $SSH_REPO "$TRAVIS_BRANCH";
+    fi
 
