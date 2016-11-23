@@ -4,17 +4,6 @@
 import sys
 import os
 
-from optparse import OptionParser
-
-__all__ = []
-__version__ = 0.1
-__date__ = '2016-11-18'
-__updated__ = '2016-11-18'
-
-DEBUG = 1
-TESTRUN = 0
-PROFILE = 0
-
 def main(argv=None):
     argv = sys.argv[1:]
     import nbformat
