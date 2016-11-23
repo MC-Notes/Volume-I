@@ -9,7 +9,7 @@ do
         then
             pip install -r $folder/requirements.txt;
         fi;
-        if [ -a $folder/executed_notebook.ipynb ] # Only run if not already:
+        if [ ! -f $folder/executed_notebook.ipynb ] # Only run if not already:
         then
             echo Running notebook $notebook...;
             python run_notebook.py $notebook;
