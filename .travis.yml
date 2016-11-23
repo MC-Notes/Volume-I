@@ -20,7 +20,8 @@ env:
   - PYTHON_VERSION=3.5
   
 before_install:
-- if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+- if [ "$TRAVIS_PULL_REQUEST" == "false" ]
+  then
     REPO=`git config remote.origin.url`;
     SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:};
     SHA=`git rev-parse --verify HEAD`;
@@ -30,6 +31,8 @@ before_install:
     chmod 600 github_deploy;
     eval `ssh-agent -s`;
     ssh-add github_deploy;
+    git config user.name "Travis CI";
+    git config user.email "$COMMIT_AUTHOR_EMAIL";
   fi;
 - wget https://github.com/mzwiessele/travis_scripts/raw/master/download_miniconda.sh
 - wget https://github.com/mzwiessele/travis_scripts/raw/master/install_retry.sh

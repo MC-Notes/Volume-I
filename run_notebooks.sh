@@ -13,9 +13,12 @@ do
         then
             echo Running notebook $notebook...;
             python run_notebook.py $notebook;
-            echo Adding exectued notebook to github...;
-            git add $folder/executed_notebook.ipynb;
-            git commit -m "new: Executed notebook $notebook";
+            if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
+            then
+                echo Adding exectued notebook to github...;
+                git add $folder/executed_notebook.ipynb;
+                git commit -m "new: ${SHA} Executed notebook $notebook";
+            fi;
         else
             echo Notebook $notebook already run, not rerunning.;
         fi;
