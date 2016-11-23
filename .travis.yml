@@ -1,35 +1,23 @@
 sudo: false
-
 os:
 - linux
-#- osx
-
 addons:
   apt_packages:
-    - pandoc
-
-#cache:
-#  directories:
-#  - "$HOME/download/"
-#  - "$HOME/install/"
-
+  - pandoc
 env:
-  #- PYTHON_VERSION=2.7
-  #- PYTHON_VERSION=3.3
-  #- PYTHON_VERSION=3.4
+  matrix:
   - PYTHON_VERSION=3.5
-  
+  global:
+    secure: qdLVL0MjXVItsjvT3aAEldXSXpYkQDhAlxx+K+1Q3ro/99OTWmUJBUfhfE3kY3MVk9X484IeoqFsceVTDLHjEajolxKtiWdDpBrd7rFLKKAzSGN3gGSw1B7DTUpViXwXQx7yDqeyysyhRuxJWqaeN28wqhqqEJlJFeiDTWP8YY3VNO0GkWzCBPX+uWSj9bBNibmCpJhc8AY7oO/3ZVa3AL8ynqTV2bG/XiJDvkyD6FCpWuimIW8ndcBZLfHhubRIiYcq63ussYItK1HaZZrdBnH6DyZDEtcI2kutJF6jx0C5aM+gN1xZuLsMbBvwfYlIWHeUBW7RbM4e1VEUll1ySCnb7rT1tv/V/3kTp0dJe7QuXfEULdiNPZUAmv/ATLpLFO4zD0kJ4HnoVb2VukZD0dIFL5KtJalPdM+liIvGA03oz2XKJu8yqKTqgvBb92Jq9IGaauHvWTyXghPfuywSS+Y3fow2SwVe0BUyYq+sIspcIi4cAOzggBTX7vIIGZsfdoF+T6KqiQNfkxwMq91Y7RZ+rGtjjweY1nPLR0CmzN819RKqqD4d+sKukIreHEzG+mt06j4Sc2rEIVRi0rfKDsLrymUu5sNmrwhjV3Nq63uETSyjBVn9GRUnCfLgJpnfnaxqZjg/1aUT6fOyhrSEd6Qy4G+poz8yzgBpkplB8gU=
 before_install:
 - wget https://github.com/mzwiessele/travis_scripts/raw/master/download_miniconda.sh
 - wget https://github.com/mzwiessele/travis_scripts/raw/master/install_retry.sh
 - source download_miniconda.sh
 - echo $PATH
-
 install:
 - echo $PATH
 - source install_retry.sh
-- conda install --yes jupyter ipywidgets 
+- conda install --yes jupyter ipywidgets
 - pip install pypandoc
-
 script:
-  - bash run_notebooks.sh
+- bash run_notebooks.sh

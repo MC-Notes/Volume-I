@@ -7,6 +7,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     ENCRYPTION_LABEL="$encrypted_a3a89bfc08a4";
     COMMIT_AUTHOR_EMAIL="ibinbei@gmail.com";
     openssl aes-256-cbc -K $encrypted_a3a89bfc08a4_key -iv $encrypted_a3a89bfc08a4_iv -in github_deploy.enc -out github_deploy -d;
+    ZENODO_ACCESS=https://sandbox.zenodo.org/api/deposit/depositions?access_token=$ZENODO_ACCESS_TOKEN
     chmod 600 github_deploy;
     eval `ssh-agent -s`;
     ssh-add github_deploy;
@@ -34,6 +35,7 @@ do
                 echo Adding exectued notebook to github ...;
                 git add $folder/executed_notebook.ipynb;
                 git commit -m "new: ${SHA} Executed notebook $notebook";
+                todo: add zenodo test sandbox upload
             fi;
         else
             echo Notebook $notebook already run, not rerunning.;
