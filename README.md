@@ -13,7 +13,7 @@ The structure of the notebook should include:
  - Name of the notebook.
  - Author names, contact and short summary (abstract).
  - Cell description and cells to run the code. 
- - Conclusion \& [References](#Citations)
+ - Conclusion \& [References](#References)
 
 ### Files to include
  - `\<notebook_name\>.ipynb` 
@@ -24,5 +24,5 @@ The structure of the notebook should include:
    One line per required package for installation. Packages must be provided on pip and installable by pip install \<packagname\>.
  - No other files are allowed. Supporting scripts should be directly embedded into the notebook.
 
-### Citations
+### References
 We recommend using calysto document tools from the calysto notebook extensions https://github.com/Calysto/notebook-extensions, which allows you to reference bibtex style and include the bibliography directly into the notebook. 
