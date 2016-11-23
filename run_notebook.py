@@ -12,7 +12,8 @@ def main(argv=None):
     note_folder = os.path.dirname(notebook)
     with open(notebook) as f:
         nb = nbformat.read(f, as_version=4)
-    print('Running notebook {} ...'.format(argv[0]))
+    
+    #print('Running notebook {} ...'.format(argv[0]))
     ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
     ep.preprocess(nb, {'metadata': {'path': note_folder}})
 

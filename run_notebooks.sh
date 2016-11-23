@@ -27,11 +27,11 @@ do
         fi;
         if [ ! -f $folder/executed_notebook.ipynb ] # Only run if not already:
         then
-            echo Running notebook $notebook...;
+            echo Running notebook $notebook ...;
             python run_notebook.py $notebook;
             if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
             then
-                echo Adding exectued notebook to github...;
+                echo Adding exectued notebook to github ...;
                 git add $folder/executed_notebook.ipynb;
                 git commit -m "new: ${SHA} Executed notebook $notebook";
             fi;
