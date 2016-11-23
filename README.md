@@ -13,7 +13,7 @@ The structure of the notebook should include:
  - Name of the notebook.
  - Author names, contact and short summary (abstract).
  - Cell description and cells to run the code. 
- - Conclusion \& [Citations](References)
+ - Conclusion \& [References](#Citations)
 
 ### Files to include
  - `\<notebook_name\>.ipynb` 
