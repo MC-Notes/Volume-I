@@ -22,7 +22,25 @@ The structure of the notebook should include:
    Make sure the notebook runs by itself all the way through without user interaction, as otherwise the submission will not be accepted.
  - `requirements.txt`
    One line per required package for installation. Packages must be provided on pip and installable by pip install \<packagname\>.
- - No other files are allowed. Supporting scripts should be directly embedded into the notebook.
+ - `metadata.yml'
+   Yaml file containing the metadata for your publication. This file will be used to add a DOI to your notebook for citation. An example file is shown below. Optional entries are marked as optional.
+   ```
+   title: Title of Notebook
+   creators:
+     - {'name': "last, first", 'affiliation': 'university of ...'}
+     - {'name': "last, first", 'affiliation': 'university of ...'}
+     ...
+   description: "Short description (abstract) of the notebook."
+   keywords: ['keyword1', 'keyword2', ... ] # Optional
+   contributors: # Optional
+     - {'name': "last, first", 'type': 'DataCollector', 'affiliation': 'university of ...'}
+     - {'name': "last, first", 'type': 'ContactPerson', 'affiliation': 'university of ...'}
+   grants:
+     - 'id':'FP7 grant id'
+   ```
+   Have a look at https://sandbox.zenodo.org/dev#restapi-rep-meta for a detailed description of the metadata file and options.
 
+*No other files are allowed, accompanying scripts should be included into the notebook at the appropriate position.*
+  
 ### References
 We recommend using calysto document tools from the calysto notebook extensions https://github.com/Calysto/notebook-extensions, which allows you to reference bibtex style and include the bibliography directly into the notebook. 
