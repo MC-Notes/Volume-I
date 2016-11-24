@@ -6,8 +6,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     SHA=`git rev-parse --verify HEAD`;
     ENCRYPTION_LABEL="$encrypted_a3a89bfc08a4";
     COMMIT_AUTHOR_EMAIL="ibinbei@gmail.com";
-    openssl aes-256-cbc -K $encrypted_a3a89bfc08a4_key -iv $encrypted_a3a89bfc08a4_iv -in github_deploy.enc -out github_deploy -d;
-    ZENODO_ACCESS=https://sandbox.zenodo.org/api/deposit/depositions?access_token=$ZENODO_ACCESS_TOKEN
+    openssl aes-256-cbc -K $encrypted_a3a89bfc08a4_key -iv $encrypted_a3a89bfc08a4_iv -in secrets.tar.enc -out secrets.tar -d
+    tar xvf secrets.tar;
+    ZENODO_ACCESS_TOKEN=`cat zenodo-access`;
+    ZENODO_ACCESS=https://sandbox.zenodo.org/api/deposit/depositions;
     chmod 600 github_deploy;
     eval `ssh-agent -s`;
     ssh-add github_deploy;
@@ -20,11 +22,24 @@ fi;
 for folder in $( ls -d */ )
 do
     echo $folder
+    echo +++++++++++++++++++++++++++++++;
+    reqs = $folder/requirements.txt
+    metadata = $folder/metadata.yml
+    
     for notebook in $( ls $folder/*.ipynb )
     do
-        if [ -a $folder/requirements.txt ]
+        if [ -a reqs ]
         then
-            pip install -r $folder/requirements.txt;
+            pip install -r reqs;
+            echo -----------------------------------;
+        else
+            echo "Missing requirements.txt for $notebook, please provide requirements as described in the readme (or empty file if no requirements).";
+            exit 3;
+        fi;
+        if [ ! -f $folder/metadata.yml ]
+        then
+            echo "Missing metadata.yml for $notebook, please provide metadata as described in the readme.";
+            exit 3;
         fi;
         if [ ! -f $folder/executed_notebook.ipynb ] # Only run if not already:
         then
@@ -35,12 +50,13 @@ do
                 echo Adding exectued notebook to github ...;
                 git add $folder/executed_notebook.ipynb;
                 git commit -m "new: ${SHA} Executed notebook $notebook";
-                todo: add zenodo test sandbox upload
+                python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs
             fi;
         else
             echo Notebook $notebook already run, not rerunning.;
         fi;
     done;
+    echo +++++++++++++++++++++++++++++++; 
 done;
 
 
