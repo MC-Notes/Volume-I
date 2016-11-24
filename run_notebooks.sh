@@ -26,7 +26,7 @@ do
     echo +++++++++++++++++++++++++++++++;
     reqs=$folder/requirements.txt;
     metadata=$folder/metadata.yml;
-    notebook=scgplvm/*.ipynb;
+    notebook=$folder/*.ipynb;
     if [ $( ls -1 $folder/*.ipynb | wc -l ) != 1 ];
     then
         echo "Found more than one notebook in note $folder, only one notebook allowed";
@@ -36,7 +36,7 @@ do
         echo "Found more than 3 files in note $folder, found files are: $( ls -1 $folder )";
         exit 4;
     fi;
-    if [ -a reqs ];
+    if [ -f $reqs ];
     then
         pip install -r reqs;
         echo -----------------------------------;
