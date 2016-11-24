@@ -3,7 +3,7 @@ import yaml, requests, sys, json
 argv = sys.argv[1:]
 
 try:
-    url, access_token, metadata_file, notebook, requirements = argv
+    url, access_token, metadata_file, notebook, requirements, folder = argv
 except:
     print('Usage: python zenodo_upload_doi.py zenodo_url zenodo_access_token metadata_file \n upload to zenodo url with access token with metadata stored as .yml file in metadata_file. ')
     sys.exit(2)
@@ -71,3 +71,7 @@ else:
     import pprint
     r = requests.post(pub_url)
     pprint.pprint(r.json)
+    
+    with open(os.path.join(folder, 'zenodo_upload.yml'), 'w') as f:
+        yaml.dump(r.json, f)
+    

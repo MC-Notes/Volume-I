@@ -31,7 +31,7 @@ function check_files {
     test ! -f $reqs && (printf "Missing requirements.txt for $folder, please provide requirements as described in the readme (or empty file if no requirements)." 1>&2; exit_after=1);
     test ! -f $metadata && (printf "Missing metadata.yml for $folder, please provide metadata as described in the readme." 1>&2; exit_after=1);
     test $( ls -1 $folder/*.ipynb | wc -l ) != 1 -a ! -f $folder/executed_notebook.ipynb && (printf "Found more than one notebook in note $folder, only one notebook is allowed" 1>&2; exit_after=1);
-    test $( ls -1 $folder/ | wc -l ) != 3 -a $( ls -1 $folder/ | wc -l ) != 4 && (printf "Found more then 3 files in $folder, files are \n$( ls -1 $folder/ )" 1>&2; exit_after=1);
+    test $( ls -1 $folder/ | wc -l ) != 3 -a $( ls -1 $folder/ | wc -l ) != 4 -a $( ls -1 $folder/ | wc -l ) != 5 && (printf "Found more then 3 files in $folder, files are \n$( ls -1 $folder/ )" 1>&2; exit_after=1);
     test $exit_after == 1 && exit 3;
 }
 
@@ -51,15 +51,20 @@ do
     then
         echo Running notebook $notebook ...;
         python run_notebook.py $notebook;
-        if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
+        if [ "$TRAVIS_PULL_REQUEST" == "false"]; 
         then
             echo Adding executed notebook to github ...;
             git add $folder/executed_notebook.ipynb;
             git commit -m "new: ${SHA} Executed notebook $notebook";
-            python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs
         fi;
     else
         echo Notebook $notebook already run, not rerunning.;
+    fi;
+    if [ ! -f $folder/zenodo_upload.yml ]
+    then
+        python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs $folder;
+        git add $folder/zenodo_upload.yml;
+        git commit -m "new: $SHA Uploaded to zenodo $folder";
     fi;
     printf "\n";
 done;
