@@ -20,42 +20,40 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     git config user.email "$COMMIT_AUTHOR_EMAIL";
 fi;
 
-for folder in $( ls -d */ )
-do
-    echo $folder
-    echo +++++++++++++++++++++++++++++++;
+function check_files {
+    folder=$1
     reqs=$folder/requirements.txt;
     metadata=$folder/metadata.yml;
-    notebook=$folder/*.ipynb;
-    if [ $( ls -1 $folder/*.ipynb | wc -l ) != 1 ];
-    then
-        echo "Found more than one notebook in note $folder, only one notebook allowed";
-        exit 3;
-    elif [ $( ls -1 $folder | wc -l ) != 3 ];
-    then
-        echo "Found more than 3 files in note $folder, found files are: $( ls -1 $folder )";
-        exit 4;
-    fi;
-    if [ -f $reqs ];
-    then
-        pip install -r reqs;
-        echo -----------------------------------;
-    else
-        echo "Missing requirements.txt for $notebook, please provide requirements as described in the readme (or empty file if no requirements).";
-        exit 5;
-    fi;
-    if [ ! -f $metadata ];
-    then
-        echo "Missing metadata.yml for $notebook, please provide metadata as described in the readme.";
-        exit 6;
-    fi;
+    notebook="$folder/$( ls $folder | grep -v 'executed_notebook.ipynb$' | grep '.ipynb$' )"
+    local exit_after=0
+    
+    # Make sure files exist
+    test ! -f $reqs && (printf "Missing requirements.txt for $folder, please provide requirements as described in the readme (or empty file if no requirements)." 1>&2; exit_after=1);
+    test ! -f $metadata && (printf "Missing metadata.yml for $folder, please provide metadata as described in the readme." 1>&2; exit_after=1);
+    test $( ls -1 $folder/*.ipynb | wc -l ) != 1 -a ! -f $folder/executed_notebook.ipynb && (printf "Found more than one notebook in note $folder, only one notebook is allowed" 1>&2; exit_after=1);
+    test $( ls -1 $folder/ | wc -l ) != 3 -a $( ls -1 $folder/ | wc -l ) != 4 && (printf "Found more then 3 files in $folder, files are \n$( ls -1 $folder/ )" 1>&2; exit_after=1);
+    test $exit_after == 1 && exit 3;
+}
+
+for folder in $( ls -d */ )
+do
+    printf "+++++++++++++++++++++++++++++++ \n";
+    printf "Processing $folder...\n";
+    printf "+++++++++++++++++++++++++++++++ \n";
+    check_files $folder;
+    #test $? != 0 && echo wtf;
+
+    # install requirements
+    pip install -r $reqs;
+    printf "=============================== \n";
+    
     if [ ! -f $folder/executed_notebook.ipynb ]; # Only run if not already:
     then
         echo Running notebook $notebook ...;
         python run_notebook.py $notebook;
         if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
         then
-            echo Adding exectued notebook to github ...;
+            echo Adding executed notebook to github ...;
             git add $folder/executed_notebook.ipynb;
             git commit -m "new: ${SHA} Executed notebook $notebook";
             python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs
@@ -63,7 +61,7 @@ do
     else
         echo Notebook $notebook already run, not rerunning.;
     fi;
-    echo +++++++++++++++++++++++++++++++; 
+    printf "\n";
 done;
 
 

@@ -14,13 +14,13 @@ headers = {"Content-Type": "application/json"}
 with open(metadata_file) as f:
     metadata = yaml.load(f)
 
-metadata.set_default('upload_type', 'publication')
-metadata.set_default('publication_type', 'other')
-metadata.set_default('access_right', 'open')
+metadata.setdefault('upload_type', 'publication')
+metadata.setdefault('publication_type', 'other')
+metadata.setdefault('access_right', 'open')
 
 import time
 l = time.localtime()
-metadata.set_default('publication_date', "{tm_year}-{tm_mon:>02}-{tm_mday:>02}".format(tm_year=l.tm_year, tm_mon=l.tm_mon, tm_mday=l.tm_mday))
+metadata.setdefault('publication_date', "{tm_year}-{tm_mon:>02}-{tm_mday:>02}".format(tm_year=l.tm_year, tm_mon=l.tm_mon, tm_mday=l.tm_mday))
 ###############
 
 # simple check for metadata
