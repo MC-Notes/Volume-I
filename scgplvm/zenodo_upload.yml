@@ -1,136 +1,55 @@
-!!python/object/apply:builtins.getattr
-- !!python/object:requests.models.Response
-  _content: !!binary |
-    ewogICJjcmVhdGVkIjogIjIwMTYtMTEtMjRUMTM6NTU6MjkuOTgxNjEyKzAwOjAwIiwgCiAgImRv
-    aSI6ICIxMC41MDcyL3plbm9kby42MjUzMCIsIAogICJkb2lfdXJsIjogImh0dHBzOi8vZG9pLm9y
-    Zy8xMC41MDcyL3plbm9kby42MjUzMCIsIAogICJmaWxlcyI6IFsKICAgIHsKICAgICAgImNoZWNr
-    c3VtIjogIjZkMjUxOTEzMzc0NDc3YTlkZWNmNTQ5YmRkMzZhYjVjIiwgCiAgICAgICJmaWxlbmFt
-    ZSI6ICJTaW5nbGVDZWxsRGF0YVdpdGhHUHkuaXB5bmIiLCAKICAgICAgImZpbGVzaXplIjogNjI4
-    NzEzLCAKICAgICAgImlkIjogIjU2MjU4MDY5LWQ1ZmItNDRhOC05Y2NlLTZkMmEwM2Y5ZDIzMyIs
-    IAogICAgICAibGlua3MiOiB7CiAgICAgICAgImRvd25sb2FkIjogImh0dHBzOi8vc2FuZGJveC56
-    ZW5vZG8ub3JnL2FwaS9maWxlcy84N2M2OTM5ZS01MDg1LTQ5ZDEtYmUyMi01YjJkNDk4NDk3NTQv
-    U2luZ2xlQ2VsbERhdGFXaXRoR1B5LmlweW5iIiwgCiAgICAgICAgInNlbGYiOiAiaHR0cHM6Ly9z
-    YW5kYm94Lnplbm9kby5vcmcvYXBpL2RlcG9zaXQvZGVwb3NpdGlvbnMvNjI1MDYvZmlsZXMvNTYy
-    NTgwNjktZDVmYi00NGE4LTljY2UtNmQyYTAzZjlkMjMzIgogICAgICB9CiAgICB9LCAKICAgIHsK
-    ICAgICAgImNoZWNrc3VtIjogImQ0ZGZkMDNlMDIwYjgwZGJjODI2NzU0MDA5YmYwZWVmIiwgCiAg
-    ICAgICJmaWxlbmFtZSI6ICJyZXF1aXJlbWVudHMudHh0IiwgCiAgICAgICJmaWxlc2l6ZSI6IDQ3
-    LCAKICAgICAgImlkIjogIjZlZjkxODZhLTdlNmItNGE2OC05MjcwLTJkNDUwZTc2Y2FlNyIsIAog
-    ICAgICAibGlua3MiOiB7CiAgICAgICAgImRvd25sb2FkIjogImh0dHBzOi8vc2FuZGJveC56ZW5v
-    ZG8ub3JnL2FwaS9maWxlcy84N2M2OTM5ZS01MDg1LTQ5ZDEtYmUyMi01YjJkNDk4NDk3NTQvcmVx
-    dWlyZW1lbnRzLnR4dCIsIAogICAgICAgICJzZWxmIjogImh0dHBzOi8vc2FuZGJveC56ZW5vZG8u
-    b3JnL2FwaS9kZXBvc2l0L2RlcG9zaXRpb25zLzYyNTA2L2ZpbGVzLzZlZjkxODZhLTdlNmItNGE2
-    OC05MjcwLTJkNDUwZTc2Y2FlNyIKICAgICAgfQogICAgfQogIF0sIAogICJpZCI6IDYyNTMwLCAK
-    ICAibGlua3MiOiB7CiAgICAiYmFkZ2UiOiAiaHR0cHM6Ly9zYW5kYm94Lnplbm9kby5vcmcvYmFk
-    Z2UvZG9pLzEwLjUwNzIvemVub2RvLjYyNTMwLnN2ZyIsIAogICAgImJ1Y2tldCI6ICJodHRwczov
-    L3NhbmRib3guemVub2RvLm9yZy9hcGkvZmlsZXMvODdjNjkzOWUtNTA4NS00OWQxLWJlMjItNWIy
-    ZDQ5ODQ5NzU0IiwgCiAgICAiZG9pIjogImh0dHBzOi8vZG9pLm9yZy8xMC41MDcyL3plbm9kby42
-    MjUzMCIsIAogICAgInJlY29yZCI6ICJodHRwczovL3NhbmRib3guemVub2RvLm9yZy9hcGkvcmVj
-    b3Jkcy82MjUzMCIsIAogICAgInJlY29yZF9odG1sIjogImh0dHBzOi8vc2FuZGJveC56ZW5vZG8u
-    b3JnL3JlY29yZC82MjUzMCIKICB9LCAKICAibWV0YWRhdGEiOiB7CiAgICAiYWNjZXNzX3JpZ2h0
-    IjogIm9wZW4iLCAKICAgICJjb21tdW5pdGllcyI6IFsKICAgICAgewogICAgICAgICJpZGVudGlm
-    aWVyIjogImVjZnVuZGVkIgogICAgICB9LCAKICAgICAgewogICAgICAgICJpZGVudGlmaWVyIjog
-    Inplbm9kbyIKICAgICAgfQogICAgXSwgCiAgICAiY3JlYXRvcnMiOiBbCiAgICAgIHsKICAgICAg
-    ICAiYWZmaWxpYXRpb24iOiAiVW5pdmVyc2l0eSBvZiBTaGVmZmllbGQiLCAKICAgICAgICAibmFt
-    ZSI6ICJad2llc3NlbGUsIE1heCIKICAgICAgfSwgCiAgICAgIHsKICAgICAgICAiYWZmaWxpYXRp
-    b24iOiAiRU1CTCBFQkkgSGlueHRvbiIsIAogICAgICAgICJuYW1lIjogIlN0ZWdsZSwgT2xpdmVy
-    IgogICAgICB9LCAKICAgICAgewogICAgICAgICJhZmZpbGlhdGlvbiI6ICJVbml2ZXJzaXR5IG9m
-    IFNoZWZmaWVsZCIsIAogICAgICAgICJuYW1lIjogIkxhd3JlbmNlLCBOZWlsIgogICAgICB9CiAg
-    ICBdLCAKICAgICJkZXNjcmlwdGlvbiI6ICJJbiB0aGlzIG5vdGVib29rIHdlIGZvbGxvdyAoQnVl
-    dHRuZXIgYW5kIFRoZWlzLCAyMDEyKSBhbmQgdXNlIHRoZSBHUC1MVk0gdG8gYW5hbHl6ZSBzb21l
-    IHNpbmdsZSBjZWxsIGRhdGEgZnJvbSAoR3VvIGV0IGFsLiwgMjAxMCkuIFRoZXkgcGVyZm9ybWVk
-    IHFQQ1IgVGFxTWFuIGFycmF5IG9uIHNpbmdsZSBjZWxscyBmcm9tIHRoZSBkZXZlbG9waW5nIGJs
-    YXN0b2N5c3QgaW4gbW91c2UuIFRoZSBkYXRhIGlzIHRha2VuIGZyb20gdGhlIGVhcmx5IHN0YWdl
-    cyBvZiBkZXZlbG9wbWVudCB3aGVuIHRoZSBCbGFzdG9jeXN0IGlzIGZvcm1pbmcuIEF0IHRoZSAz
-    MiBjZWxsIHN0YWdlIHRoZSBkYXRhIGlzIGFscmVhZHkgc2VwYXJhdGVkIGludG8gdGhlIHRyb3Bo
-    ZWN0b2Rlcm0gKFRFKSB3aGljaCBnb2VzIG9udG8gZm9ybSB0aGUgcGxhY2VudGEgYW5kIHRoZSBp
-    bm5lciBjZWxsdWxhciBtYXNzIChJQ00pLiBUaGUgSUNNIGZ1cnRoZXIgZGlmZmVyZW50aWF0ZXMg
-    aW50byB0aGUgZXBpYmxhc3QgKEVQSSktLS13aGljaCBnaXZlcyByaXNlIHRvIHRoZSBlbmRvZGVy
-    bSwgbWVzb2Rlcm0gYW5kIGVjdG9kZXJtLS0tYW5kIHRoZSBwcmltaXRpdmUgZW5kb2Rlcm0gKFBF
-    KSB3aGljaCBkZXZlbG9wcyBpbnRvIHRoZSBhbW5pb3RpYyBzYWNrLiBHdW8gZXQgYWwgc2VsZWN0
-    ZWQgNDggZ2VuZXMgZm9yIGV4cHJlc3Npb24gbWVhc3VyZW1lbnQuIFRoZXkgbGFiZWxsZWQgdGhl
-    IHJlc3VsdGluZyBjZWxscyBhbmQgdGhlaXIgbGFiZWxzIGFyZSBpbmNsdWRlZCBhcyBhbiBhaWRl
-    IHRvIHZpc3VhbGl6YXRpb24uIiwgCiAgICAiZG9pIjogIjEwLjUwNzIvemVub2RvLjYyNTMwIiwg
-    CiAgICAiZ3JhbnRzIjogWwogICAgICB7CiAgICAgICAgImlkIjogIjMxNjg2MSIKICAgICAgfQog
-    ICAgXSwgCiAgICAia2V5d29yZHMiOiBbCiAgICAgICJHUExWTSIsIAogICAgICAiRGltZW5zaW9u
-    YWxpdHkgUmVkdWN0aW9uIiwgCiAgICAgICJTaW5nbGUgY2VsbCBnZW5lIGV4cHJlc3Npb24iCiAg
-    ICBdLCAKICAgICJsaWNlbnNlIjogIkNDLUJZLTQuMCIsIAogICAgInByZXJlc2VydmVfZG9pIjog
-    ewogICAgICAiZG9pIjogIjEwLjUwNzIvemVub2RvLjYyNTMwIiwgCiAgICAgICJyZWNpZCI6IDYy
-    NTMwCiAgICB9LCAKICAgICJwdWJsaWNhdGlvbl9kYXRlIjogIjIwMTYtMTEtMjQiLCAKICAgICJw
-    dWJsaWNhdGlvbl90eXBlIjogIm90aGVyIiwgCiAgICAidGl0bGUiOiAiQmxhc3RvY3lzdCBEZXZl
-    bG9wbWVudCBpbiBNaWNlOiBTaW5nbGUgQ2VsbCBUYXFNYW4gQXJyYXlzIiwgCiAgICAidXBsb2Fk
-    X3R5cGUiOiAicHVibGljYXRpb24iCiAgfSwgCiAgIm1vZGlmaWVkIjogIjIwMTYtMTEtMjRUMTM6
-    NTU6MzkuNzg5NjMxKzAwOjAwIiwgCiAgIm93bmVyIjogNDcsIAogICJyZWNvcmRfaWQiOiA2MjUz
-    MCwgCiAgInN0YXRlIjogImRvbmUiLCAKICAic3VibWl0dGVkIjogdHJ1ZSwgCiAgInRpdGxlIjog
-    IkJsYXN0b2N5c3QgRGV2ZWxvcG1lbnQgaW4gTWljZTogU2luZ2xlIENlbGwgVGFxTWFuIEFycmF5
-    cyIKfQ==
-  cookies: !!python/object:requests.cookies.RequestsCookieJar
-    _cookies: {}
-    _now: 1479995740
-    _policy: !!python/object:http.cookiejar.DefaultCookiePolicy
-      _allowed_domains: null
-      _blocked_domains: !!python/tuple []
-      _now: 1479995740
-      hide_cookie2: false
-      netscape: true
-      rfc2109_as_netscape: null
-      rfc2965: false
-      strict_domain: false
-      strict_ns_domain: 0
-      strict_ns_set_initial_dollar: false
-      strict_ns_set_path: false
-      strict_ns_unverifiable: false
-      strict_rfc2965_unverifiable: true
-  elapsed: !!python/object/apply:datetime.timedelta [0, 0, 889749]
-  encoding: null
-  headers: !!python/object:requests.structures.CaseInsensitiveDict
-    _store:
-      access-control-allow-origin: !!python/tuple [Access-Control-Allow-Origin, '*']
-      access-control-expose-headers: !!python/tuple [Access-Control-Expose-Headers,
-        'Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset']
-      content-length: !!python/tuple [Content-Length, '3481']
-      content-type: !!python/tuple [Content-Type, application/json]
-      date: !!python/tuple [Date, 'Thu, 24 Nov 2016 13:55:40 GMT']
-      etag: !!python/tuple [ETag, '"3"']
-      last-modified: !!python/tuple [Last-Modified, 'Thu, 24 Nov 2016 13:55:39 GMT']
-      location: !!python/tuple [Location, 'https://sandbox.zenodo.org/api/deposit/depositions/62530']
-      retry-after: !!python/tuple [Retry-After, '3598']
-      server: !!python/tuple [Server, nginx/1.10.2]
-      x-ratelimit-limit: !!python/tuple [X-RateLimit-Limit, '5000']
-      x-ratelimit-remaining: !!python/tuple [X-RateLimit-Remaining, '4999']
-      x-ratelimit-reset: !!python/tuple [X-RateLimit-Reset, '1479999339']
-      x-sentry-id: !!python/tuple [X-Sentry-ID, None]
-  history: []
-  reason: ACCEPTED
-  request: !!python/object:requests.models.PreparedRequest
-    _cookies: !!python/object:requests.cookies.RequestsCookieJar
-      _cookies: {}
-      _now: 1479995739
-      _policy: !!python/object:http.cookiejar.DefaultCookiePolicy
-        _allowed_domains: null
-        _blocked_domains: !!python/tuple []
-        _now: 1479995739
-        hide_cookie2: false
-        netscape: true
-        rfc2109_as_netscape: null
-        rfc2965: false
-        strict_domain: false
-        strict_ns_domain: 0
-        strict_ns_set_initial_dollar: false
-        strict_ns_set_path: false
-        strict_ns_unverifiable: false
-        strict_rfc2965_unverifiable: true
-    body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, '*/*']
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate']
-        connection: !!python/tuple [Connection, keep-alive]
-        content-length: !!python/tuple [Content-Length, '0']
-        user-agent: !!python/tuple [User-Agent, python-requests/2.9.1]
-    hooks:
-      response: []
-    method: POST
-    url: https://sandbox.zenodo.org/api/deposit/depositions/62530/actions/publish?access_token=daCvZOxZMzA3ASYGj6suIEQAHsBW64B7k62vB4CWSQzkIKtg34YRKvbbO4pD
-  status_code: 202
-  url: https://sandbox.zenodo.org/api/deposit/depositions/62530/actions/publish?access_token=daCvZOxZMzA3ASYGj6suIEQAHsBW64B7k62vB4CWSQzkIKtg34YRKvbbO4pD
-- json
+created: '2016-11-24T14:00:10.258367+00:00'
+doi: 10.5072/zenodo.62531
+doi_url: https://doi.org/10.5072/zenodo.62531
+files:
+- checksum: 6d251913374477a9decf549bdd36ab5c
+  filename: SingleCellDataWithGPy.ipynb
+  filesize: 628713
+  id: a553d1fe-40e3-4990-aa0d-14bb806ae077
+  links: {download: 'https://sandbox.zenodo.org/api/files/1deb498d-c275-4fdd-a371-88aac050b326/SingleCellDataWithGPy.ipynb',
+    self: 'https://sandbox.zenodo.org/api/deposit/depositions/62506/files/a553d1fe-40e3-4990-aa0d-14bb806ae077'}
+- checksum: d4dfd03e020b80dbc826754009bf0eef
+  filename: requirements.txt
+  filesize: 47
+  id: 4e1bb55d-855d-45d6-8d14-7bd9d35e8177
+  links: {download: 'https://sandbox.zenodo.org/api/files/1deb498d-c275-4fdd-a371-88aac050b326/requirements.txt',
+    self: 'https://sandbox.zenodo.org/api/deposit/depositions/62506/files/4e1bb55d-855d-45d6-8d14-7bd9d35e8177'}
+id: 62531
+links: {badge: 'https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.62531.svg', bucket: 'https://sandbox.zenodo.org/api/files/1deb498d-c275-4fdd-a371-88aac050b326',
+  doi: 'https://doi.org/10.5072/zenodo.62531', record: 'https://sandbox.zenodo.org/api/records/62531',
+  record_html: 'https://sandbox.zenodo.org/record/62531'}
+metadata:
+  access_right: open
+  communities:
+  - {identifier: ecfunded}
+  - {identifier: zenodo}
+  creators:
+  - {affiliation: University of Sheffield, name: 'Zwiessele, Max'}
+  - {affiliation: EMBL EBI Hinxton, name: 'Stegle, Oliver'}
+  - {affiliation: University of Sheffield, name: 'Lawrence, Neil'}
+  description: In this notebook we follow (Buettner and Theis, 2012) and use the GP-LVM
+    to analyze some single cell data from (Guo et al., 2010). They performed qPCR
+    TaqMan array on single cells from the developing blastocyst in mouse. The data
+    is taken from the early stages of development when the Blastocyst is forming.
+    At the 32 cell stage the data is already separated into the trophectoderm (TE)
+    which goes onto form the placenta and the inner cellular mass (ICM). The ICM further
+    differentiates into the epiblast (EPI)---which gives rise to the endoderm, mesoderm
+    and ectoderm---and the primitive endoderm (PE) which develops into the amniotic
+    sack. Guo et al selected 48 genes for expression measurement. They labelled the
+    resulting cells and their labels are included as an aide to visualization.
+  doi: 10.5072/zenodo.62531
+  grants:
+  - {id: '316861'}
+  keywords: [GPLVM, Dimensionality Reduction, Single cell gene expression]
+  license: CC-BY-4.0
+  prereserve_doi: {doi: 10.5072/zenodo.62531, recid: 62531}
+  publication_date: '2016-11-24'
+  publication_type: other
+  title: 'Blastocyst Development in Mice: Single Cell TaqMan Arrays'
+  upload_type: publication
+modified: '2016-11-24T14:00:17.918578+00:00'
+owner: 47
+record_id: 62531
+state: done
+submitted: true
+title: 'Blastocyst Development in Mice: Single Cell TaqMan Arrays'
