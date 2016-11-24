@@ -1,23 +1,25 @@
 #!/bin/bash
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    REPO=`git config remote.origin.url`;
-    SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:};
-    SHA=`git rev-parse --verify HEAD`;
-    ENCRYPTION_LABEL="$encrypted_a3a89bfc08a4";
-    COMMIT_AUTHOR_EMAIL="ibinbei@gmail.com";
-    openssl aes-256-cbc -K $encrypted_a3a89bfc08a4_key -iv $encrypted_a3a89bfc08a4_iv -in secrets.tar.enc -out secrets.tar -d
-    tar xvf secrets.tar;
+    if [ "$CI" == "true" ]; then
+        REPO=`git config remote.origin.url`;
+        SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:};
+        SHA=`git rev-parse --verify HEAD`;
+        ENCRYPTION_LABEL="$encrypted_a3a89bfc08a4";
+        COMMIT_AUTHOR_EMAIL="ibinbei@gmail.com";
+        openssl aes-256-cbc -K $encrypted_a3a89bfc08a4_key -iv $encrypted_a3a89bfc08a4_iv -in secrets.tar.enc -out secrets.tar -d
+        tar xvf secrets.tar;
+        chmod 600 github_deploy;
+        chmod 600 zenodo_access;
+        eval `ssh-agent -s`;
+        ssh-add github_deploy;
+        git clone $REPO out
+        cd out
+        git config user.name "Travis CI";
+        git config user.email "$COMMIT_AUTHOR_EMAIL";
+    fi;
     ZENODO_ACCESS_TOKEN=`cat zenodo-access`;
     ZENODO_ACCESS=https://sandbox.zenodo.org/api/deposit/depositions;
-    chmod 600 github_deploy;
-    chmod 600 zenodo_access;
-    eval `ssh-agent -s`;
-    ssh-add github_deploy;
-    git clone $REPO out
-    cd out
-    git config user.name "Travis CI";
-    git config user.email "$COMMIT_AUTHOR_EMAIL";
 fi;
 
 function check_files {
@@ -42,34 +44,46 @@ do
     printf "+++++++++++++++++++++++++++++++ \n";
     check_files $folder;
     #test $? != 0 && echo wtf;
-
-    # install requirements
-    pip install -r $reqs;
-    printf "=============================== \n";
     
     if [ ! -f $folder/executed_notebook.ipynb ]; # Only run if not already:
     then
+        # install requirements
+        pip install -r $reqs;
+        printf "\n";
         echo Running notebook $notebook ...;
         python run_notebook.py $notebook;
-        if [ "$TRAVIS_PULL_REQUEST" == "false"]; 
+        if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
         then
-            echo Adding executed notebook to github ...;
+            echo "Adding executed notebook to github ...";
             git add $folder/executed_notebook.ipynb;
             git commit -m "new: ${SHA} Executed notebook $notebook";
         fi;
     else
-        echo Notebook $notebook already run, not rerunning.;
+        printf "\n";
+        echo $notebook already run, not rerunning.;
     fi;
-    if [ ! -f $folder/zenodo_upload.yml ]
+    if [ ! -f $folder/zenodo_upload.yml ];
     then
-        python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs $folder;
-        git add $folder/zenodo_upload.yml;
-        git commit -m "new: $SHA Uploaded to zenodo $folder";
+        if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
+        then
+            printf "\n";
+            echo Uploading $folder to zenodo;
+            python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs $folder;
+            git add $folder/zenodo_upload.yml;
+            git commit -m "new: $SHA Uploaded to zenodo $folder";
+        fi;
+    else
+        printf "\n";
+        printf "$folder already uploaded as \n\n$( cat $folder/zenodo_upload.yml )\n";
     fi;
     printf "\n";
 done;
 
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    git push $SSH_REPO "$TRAVIS_BRANCH";
+    if [ "$CI" == "true" ]; then
+        git push $SSH_REPO "$TRAVIS_BRANCH";
+    else
+        echo Updated tree, see git status for details.;
+    fi;
 fi

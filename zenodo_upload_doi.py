@@ -1,4 +1,4 @@
-import yaml, requests, sys, json
+import yaml, requests, sys, json, os
 
 argv = sys.argv[1:]
 
@@ -45,7 +45,7 @@ r = requests.post(c_url, data=json.dumps(dict(metadata=metadata)), headers=heade
 r_json = r.json()
 
 # check deposition status
-if r_json['status'] != 201:
+if r.status_code != 201:
     # deposition failed, report status
     stat = 'Given metadata returned error code {}'.format(r_json['status'])
     if 'message' in r_json:
@@ -56,7 +56,7 @@ else:
     # deposition success:
     post_url = access(r_json['links']['files'])
     # add notebook and requirements to deposition
-    with open(notebook, 'rb') as f:
+    with open(os.path.join(folder, 'executed_notebook.ipynb'), 'rb') as f:
         data = {'filename': 'notebook.ipynb'}
         files = {'file': f}
         r = requests.post(post_url, data=data, files=files)
@@ -73,5 +73,6 @@ else:
     pprint.pprint(r.json)
     
     with open(os.path.join(folder, 'zenodo_upload.yml'), 'w') as f:
-        yaml.dump(r.json, f)
+        yaml.dump(r.json(), f)
+        
     
