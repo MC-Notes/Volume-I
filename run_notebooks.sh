@@ -11,6 +11,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     ZENODO_ACCESS_TOKEN=`cat zenodo-access`;
     ZENODO_ACCESS=https://sandbox.zenodo.org/api/deposit/depositions;
     chmod 600 github_deploy;
+    chmod 600 zenodo_access;
     eval `ssh-agent -s`;
     ssh-add github_deploy;
     git clone $REPO out
@@ -23,8 +24,8 @@ for folder in $( ls -d */ )
 do
     echo $folder
     echo +++++++++++++++++++++++++++++++;
-    reqs = $folder/requirements.txt
-    metadata = $folder/metadata.yml
+    reqs=$folder/requirements.txt
+    metadata=$folder/metadata.yml
     
     for notebook in $( ls $folder/*.ipynb )
     do
@@ -36,10 +37,10 @@ do
             echo "Missing requirements.txt for $notebook, please provide requirements as described in the readme (or empty file if no requirements).";
             exit 3;
         fi;
-        if [ ! -f $folder/metadata.yml ]
+        if [ ! -f $metadata ]
         then
             echo "Missing metadata.yml for $notebook, please provide metadata as described in the readme.";
-            exit 3;
+            exit 4;
         fi;
         if [ ! -f $folder/executed_notebook.ipynb ] # Only run if not already:
         then
