@@ -5,7 +5,7 @@ argv = sys.argv[1:]
 try:
     url, access_token, metadata_file, notebook, requirements = argv
 except:
-    print('Usage: python zenodo_upload_doi.py zenodo_url zenodo_access_token metadata_file \n upload to zenodo url (has to have access token included) with metadata stored as .yml file in metadata_file. ')
+    print('Usage: python zenodo_upload_doi.py zenodo_url zenodo_access_token metadata_file \n upload to zenodo url with access token with metadata stored as .yml file in metadata_file. ')
     sys.exit(2)
 
 ###############
@@ -36,10 +36,11 @@ check_metadata(metadata)
 
 # Make small script to add access token to urls:
 def access(url):
-    return '{}?access_token={}'.format(url, access)
+    return '{}?access_token={}'.format(url, access_token)
 
 # create deposition
 c_url = access(url)
+
 r = requests.post(c_url, data=json.dumps(dict(metadata=metadata)), headers=headers)
 r_json = r.json()
 
