@@ -26,37 +26,43 @@ do
     echo +++++++++++++++++++++++++++++++;
     reqs=$folder/requirements.txt
     metadata=$folder/metadata.yml
-    
-    for notebook in $( ls $folder/*.ipynb )
-    do
-        if [ -a reqs ]
+    notebook=$( ls $folder/*.ipynb )
+    if [ $( ls -1 $folder | wc -l ) != 1 ];
+    then
+        echo "Found more than one notebook in note $folder, only one notebook allowed";
+        exit 3;
+    elif [ $( ls -1 $folder | wc -l ) != 3 ];
+    then
+        echo "Found more than 3 files in note $folder, found files are: $( ls -1 $folder )";
+        exit 4;
+    fi;
+    if [ -a reqs ];
+    then
+        pip install -r reqs;
+        echo -----------------------------------;
+    else
+        echo "Missing requirements.txt for $notebook, please provide requirements as described in the readme (or empty file if no requirements).";
+        exit 5;
+    fi;
+    if [ ! -f $metadata ];
+    then
+        echo "Missing metadata.yml for $notebook, please provide metadata as described in the readme.";
+        exit 6;
+    fi;
+    if [ ! -f $folder/executed_notebook.ipynb ]; # Only run if not already:
+    then
+        echo Running notebook $notebook ...;
+        python run_notebook.py $notebook;
+        if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
         then
-            pip install -r reqs;
-            echo -----------------------------------;
-        else
-            echo "Missing requirements.txt for $notebook, please provide requirements as described in the readme (or empty file if no requirements).";
-            exit 3;
+            echo Adding exectued notebook to github ...;
+            git add $folder/executed_notebook.ipynb;
+            git commit -m "new: ${SHA} Executed notebook $notebook";
+            python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs
         fi;
-        if [ ! -f $metadata ]
-        then
-            echo "Missing metadata.yml for $notebook, please provide metadata as described in the readme.";
-            exit 4;
-        fi;
-        if [ ! -f $folder/executed_notebook.ipynb ] # Only run if not already:
-        then
-            echo Running notebook $notebook ...;
-            python run_notebook.py $notebook;
-            if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
-            then
-                echo Adding exectued notebook to github ...;
-                git add $folder/executed_notebook.ipynb;
-                git commit -m "new: ${SHA} Executed notebook $notebook";
-                python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs
-            fi;
-        else
-            echo Notebook $notebook already run, not rerunning.;
-        fi;
-    done;
+    else
+        echo Notebook $notebook already run, not rerunning.;
+    fi;
     echo +++++++++++++++++++++++++++++++; 
 done;
 
