@@ -24,9 +24,9 @@ for folder in $( ls -d */ )
 do
     echo $folder
     echo +++++++++++++++++++++++++++++++;
-    reqs=$folder/requirements.txt
-    metadata=$folder/metadata.yml
-    notebook=$( ls $folder/*.ipynb )
+    reqs=$folder/requirements.txt;
+    metadata=$folder/metadata.yml;
+    notebook=$( ls $folder/*.ipynb );
     if [ $( ls -1 $folder | wc -l ) != 1 ];
     then
         echo "Found more than one notebook in note $folder, only one notebook allowed";
