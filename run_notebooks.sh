@@ -26,8 +26,8 @@ do
     echo +++++++++++++++++++++++++++++++;
     reqs=$folder/requirements.txt;
     metadata=$folder/metadata.yml;
-    notebook=$( ls $folder/*.ipynb );
-    if [ $( $notebook | wc -l ) != 1 ];
+    notebook=scgplvm/*.ipynb;
+    if [ $( ls -1 $folder/*.ipynb | wc -l ) != 1 ];
     then
         echo "Found more than one notebook in note $folder, only one notebook allowed";
         exit 3;
