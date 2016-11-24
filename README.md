@@ -22,7 +22,7 @@ The structure of the notebook should include:
    Make sure the notebook runs by itself all the way through without user interaction, as otherwise the submission will not be accepted.
  - `requirements.txt`
    One line per required package for installation. Packages must be provided on pip and installable by pip install \<packagname\>.
- - `metadata.yml'
+ - `metadata.yml`
    Yaml file containing the metadata for your publication. This file will be used to add a DOI to your notebook for citation. An example file is shown below. Optional entries are marked as optional.
    ```
    title: Title of Notebook
