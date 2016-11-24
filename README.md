@@ -20,6 +20,7 @@ The structure of the notebook should include:
    Jupyter notebook runnable in python 3. 
    The notebook has to run through without any user input. 
    Make sure the notebook runs by itself all the way through without user interaction, as otherwise the submission will not be accepted.
+   **The filename `executed_notebook.ipynb` is reserved and cannot be used as a file name!**
  - `requirements.txt`
    One line per required package for installation. Packages must be provided on pip and installable by pip install \<packagname\>.
  - `metadata.yml`
