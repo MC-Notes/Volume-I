@@ -13,6 +13,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         chmod 600 zenodo_access;
         eval `ssh-agent -s`;
         ssh-add github_deploy;
+        echo $REPO
         git clone $REPO out
         cd out
         git config user.name "Travis CI";
