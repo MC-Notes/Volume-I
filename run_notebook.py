@@ -8,6 +8,8 @@ def main(argv=None):
     argv = sys.argv[1:]
     import nbformat
     from nbconvert.preprocessors import ExecutePreprocessor
+    from nbconvert.preprocessors.execute import CellExecutionError
+    from 
     notebook = argv[0]
     note_folder = os.path.dirname(notebook)
     with open(notebook) as f:
@@ -15,11 +17,16 @@ def main(argv=None):
     
     #print('Running notebook {} ...'.format(argv[0]))
     ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
-    ep.preprocess(nb, {'metadata': {'path': note_folder}})
+    try:
+        ep.preprocess(nb, {'metadata': {'path': note_folder}})
+    except CellExecutionError as c:
+        print(c)
+        return 2
 
     with open('{}/executed_notebook.ipynb'.format(note_folder), 'wt') as f:
         nbformat.write(nb, f)
-
+    
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main())
