@@ -1,0 +1,10 @@
+title: "Bayesian Linear Regression using GPy"
+creators: 
+ - {name: 'Zwiessele, Max', affiliation: 'University of Sheffield'}
+description: "In this notebook we show the progress from simple Bayesian linear regression to Gaussian processes. We show the weight space and function space of GPs using GPy. We focus on using custom base functions to create kernels and do Bayesian estimates of kernel parameters on the base functions."
+keywords:  # Optional
+ - 'Gaussian processes'
+ - "Bayesian Linear Regression"
+ - "Kernels"
+grants: 
+ - id: '316861' # optional
