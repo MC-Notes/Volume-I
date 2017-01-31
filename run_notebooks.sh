@@ -14,7 +14,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         eval `ssh-agent -s`;
         ssh-add github_deploy;
         echo $REPO
-        git clone $REPO out
+        git clone --branch=$TRAVIS_BRANCH $REPO out
         cd out
         git config user.name "Travis CI";
         git config user.email "$COMMIT_AUTHOR_EMAIL";
