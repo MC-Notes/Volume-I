@@ -4,4 +4,4 @@ GPy
 pods
 pandas
 matplotlib
-sklearn
+seaborn
