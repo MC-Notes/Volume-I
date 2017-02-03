@@ -30,6 +30,9 @@ function check_files {
     notebook="$folder/$( ls $folder | grep -v 'executed_notebook.ipynb$' | grep '.ipynb$' )"
     local exit_after=0
     
+    # Do not run on gh-pages
+    test $folder = gh-pages && (printf "Not running on gh-pages" 1>&2; exit 3);
+    
     # Make sure files exist
     test ! -f $reqs && (printf "Missing requirements.txt for $folder, please provide requirements as described in the readme (or empty file if no requirements)." 1>&2; exit_after=1);
     test ! -f $metadata && (printf "Missing metadata.yml for $folder, please provide metadata as described in the readme." 1>&2; exit_after=1);
@@ -45,7 +48,7 @@ do
     check_files $folder;
     #test $? != 0 && echo wtf;
     
-    if [ ! -f $folder/executed_notebook.ipynb ]; # Only run if not already:
+    if [ ! -f $folder/executed_notebook.ipynb ] || [ ! -f $folder/executed_notebook.md ]; # Only run if not already:
     then
         # install requirements
         pip install -r $reqs;
@@ -56,6 +59,7 @@ do
         then
             echo "Adding executed notebook to github ...";
             git add $folder/executed_notebook.ipynb;
+            git add $folder/executed_notebook.md;
             git commit -m "new: ${SHA} Executed notebook $notebook";
         fi;
     else
@@ -74,15 +78,15 @@ do
         fi;
     else
         #printf "\n";
-        printf "$folder already uploaded"; # as \n\n$( cat $folder/zenodo_upload.yml )\n";
+        printf "$folder already uploaded\n"; # as \n\n$( cat $folder/zenodo_upload.yml )\n";
     fi;
-    printf "+++++++++++++++++++++++++++++++ \n";
+    printf "+++++++++++++++++++++++++++++++ \n\n";
 done;
 
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     if [ "$CI" == "true" ]; then
-        git push $SSH_REPO "$TRAVIS_BRANCH";
+        git push origin "$TRAVIS_BRANCH";
     else
         echo Updated tree, see git status for details.;
     fi;
