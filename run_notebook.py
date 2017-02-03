@@ -83,10 +83,11 @@ def main(argv=None):
     # Make blog post
     fw = FilesWriter(build_directory='docs/_posts/', relpath='{}/_images/'.format(filename))
     fw.write(mdnb, mdresources, filename)
-    with open('docs/_posts/{}.md'.format(filename), 'a+') as f:
+    with open('docs/_posts/{}.md'.format(filename), 'w') as f:
         f.seek(0)
         f.write(header)
         f.write('\n')
+        f.write(mdnb)
         
     
     return 0

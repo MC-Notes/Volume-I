@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Blastocyst Development in Mice: Single Cell TaqMan Arrays"
+description: "In this notebook we follow (Buettner and Theis, 2012) and use the GP-LVM to analyze some single cell data from (Guo et al., 2010). They performed qPCR TaqMan array on single cells from the developing blastocyst in mouse. The data is taken from the early stages of development when the Blastocyst is forming. At the 32 cell stage the data is already separated into the trophectoderm (TE) which goes onto form the placenta and the inner cellular mass (ICM). The ICM further differentiates into the epiblast (EPI)---which gives rise to the endoderm, mesoderm and ectoderm---and the primitive endoderm (PE) which develops into the amniotic sack. Guo et al selected 48 genes for expression measurement. They labelled the resulting cells and their labels are included as an aide to visualization."
+date: "2017-02-03 18:36:37 +0000"
+categories: "GPLVM" "Dimensionality Reduction" "Single cell gene expression"
+---
 
 # Blastocyst Development in Mice: Single Cell TaqMan Arrays
 
@@ -480,39 +487,7 @@ _ = legend_to_the_right(ax)
 
 #### work funded by the BioPreDyn and MLPM projects, it is a collaboration with Nicolas Durrande, Johannes Jaeger.
 
-<!--bibtex
 
-
-@article{Buettner2012A-novel,
-	Author = {Buettner, Florian and Theis, Fabian J},
-	Date-Added = {2013-03-19 19:00:08 +0000},
-	Date-Modified = {2013-04-04 08:25:41 +0000},
-	Journal = {Bioinformatics},
-	Number = {18},
-	Pages = {i626--i632},
-	Publisher = {Oxford Univ Press},
-	Title = {{A} novel approach for resolving differences in single-cell gene expression patterns from zygote to blastocyst},
-	Volume = {28},
-	Year = {2012},
-    url = {http://bioinformatics.oxfordjournals.org/content/28/18/i626.full.pdf},
-	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QXEJpYmxpb2dyYXBoeS9hcnRpY2xlL0J1ZXR0bmVyL0Egbm92ZWwgYXBwcm9hY2ggZm9yIHJlc29sdmluZyBkaWZmZXJlbmNlcyBpbiBzaW5nbGUtY2VsbDAucGRm0hcLGBlXTlMuZGF0YU8RAnIAAAAAAnIAAgAADE1hY2ludG9zaCBIRAAAAAAAAAAAAAAAAAAAAM1lCtpIKwAAAC4JgR9BIG5vdmVsIGFwcHJvYWNoIGZvciMyRTBCNjMucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALgtjzXIZTgAAAAAAAAAAAAEABQAACSAAAAAAAAAAAAAAAAAAAAAIQnVldHRuZXIAEAAIAADNZQraAAAAEQAIAADNchlOAAAAAQAcAC4JgQAuCLAALgirAC4IdgAMtSkABcaDAAIQ6QACAGpNYWNpbnRvc2ggSEQ6VXNlcnM6AG1heHo6AERyb3Bib3g6AFBhcGVyOgBCaWJsaW9ncmFwaHk6AGFydGljbGU6AEJ1ZXR0bmVyOgBBIG5vdmVsIGFwcHJvYWNoIGZvciMyRTBCNjMucGRmAA4AfgA+AEEAIABuAG8AdgBlAGwAIABhAHAAcAByAG8AYQBjAGgAIABmAG8AcgAgAHIAZQBzAG8AbAB2AGkAbgBnACAAZABpAGYAZgBlAHIAZQBuAGMAZQBzACAAaQBuACAAcwBpAG4AZwBsAGUALQBjAGUAbABsADAALgBwAGQAZgAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAHVVc2Vycy9tYXh6L0Ryb3Bib3gvUGFwZXIvQmlibGlvZ3JhcGh5L2FydGljbGUvQnVldHRuZXIvQSBub3ZlbCBhcHByb2FjaCBmb3IgcmVzb2x2aW5nIGRpZmZlcmVuY2VzIGluIHNpbmdsZS1jZWxsMC5wZGYAABMAAS8AABUAAgAL//8AAIAG0hscHR5aJGNsYXNzbmFtZVgkY2xhc3Nlc11OU011dGFibGVEYXRhox0fIFZOU0RhdGFYTlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVkQXJjaGl2ZXLRJidUcm9vdIABAAgAEQAaACMALQAyADcAQABGAE0AVQBgAGcAagBsAG4AcQBzAHUAdwCEAI4A7QDyAPoDcANyA3cDggOLA5kDnQOkA60DsgO/A8ID1APXA9wAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAAD3g==}}
-
-
-@article{Guo2010Resolution,
-	Author = {Guo, Guoji and Huss, Mikael and Tong, Guo Qing and Wang, Chaoyang and Li Sun, Li and Clarke, Neil D and Robson, Pauldalerba},
-	Date-Added = {2013-03-19 18:59:18 +0000},
-	Date-Modified = {2013-04-04 08:25:41 +0000},
-	Journal = {Developmental cell},
-	Number = {4},
-	Pages = {675--685},
-	Publisher = {Elsevier},
-	Title = {{R}esolution of cell fate decisions revealed by single-cell gene expression analysis from zygote to blastocyst},
-	Volume = {18},
-	Year = {2010},
-    url = {http://dx.doi.org/10.1016/j.devcel.2010.02.012},
-	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QSEJpYmxpb2dyYXBoeS9hcnRpY2xlL0d1by9SZXNvbHV0aW9uIG9mIGNlbGwgZmF0ZSBkZWNpc2lvbnMgcmV2ZWFsZWQwLnBkZtIXCxgZV05TLmRhdGFPEQI4AAAAAAI4AAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADNZQraSCsAAAAuCVUfUmVzb2x1dGlvbiBvZiBjZWxsIGYjMkUwQzNCLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4MO81nvA4AAAAAAAAAAAABAAUAAAkgAAAAAAAAAAAAAAAAAAAAA0d1bwAAEAAIAADNZQraAAAAEQAIAADNZ7wOAAAAAQAcAC4JVQAuCLAALgirAC4IdgAMtSkABcaDAAIQ6QACAGVNYWNpbnRvc2ggSEQ6VXNlcnM6AG1heHo6AERyb3Bib3g6AFBhcGVyOgBCaWJsaW9ncmFwaHk6AGFydGljbGU6AEd1bzoAUmVzb2x1dGlvbiBvZiBjZWxsIGYjMkUwQzNCLnBkZgAADgBgAC8AUgBlAHMAbwBsAHUAdABpAG8AbgAgAG8AZgAgAGMAZQBsAGwAIABmAGEAdABlACAAZABlAGMAaQBzAGkAbwBuAHMAIAByAGUAdgBlAGEAbABlAGQAMAAuAHAAZABmAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAASABEABIAYVVzZXJzL21heHovRHJvcGJveC9QYXBlci9CaWJsaW9ncmFwaHkvYXJ0aWNsZS9HdW8vUmVzb2x1dGlvbiBvZiBjZWxsIGZhdGUgZGVjaXNpb25zIHJldmVhbGVkMC5wZGYAABMAAS8AABUAAgAL//8AAIAG0hscHR5aJGNsYXNzbmFtZVgkY2xhc3Nlc11OU011dGFibGVEYXRhox0fIFZOU0RhdGFYTlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVkQXJjaGl2ZXLRJidUcm9vdIABAAgAEQAaACMALQAyADcAQABGAE0AVQBgAGcAagBsAG4AcQBzAHUAdwCEAI4A2QDeAOYDIgMkAykDNAM9A0sDTwNWA18DZANxA3QDhgOJA44AAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADkA==}}
-
--->
 
 # References
 
@@ -521,10 +496,3 @@ _ = legend_to_the_right(ax)
 <a name="cite-Guo2010Resolution"/><sup>[^](#ref-2) </sup>Guo, Guoji and Huss, Mikael and Tong, Guo Qing and Wang, Chaoyang and Li Sun, Li and Clarke, Neil D and Robson, Pauldalerba. 2010. _Resolution of cell fate decisions revealed by single-cell gene expression analysis from zygote to blastocyst_. [URL](http://dx.doi.org/10.1016/j.devcel.2010.02.012)
 
 
----
-layout: post
-title: "Blastocyst Development in Mice: Single Cell TaqMan Arrays"
-description: "In this notebook we follow (Buettner and Theis, 2012) and use the GP-LVM to analyze some single cell data from (Guo et al., 2010). They performed qPCR TaqMan array on single cells from the developing blastocyst in mouse. The data is taken from the early stages of development when the Blastocyst is forming. At the 32 cell stage the data is already separated into the trophectoderm (TE) which goes onto form the placenta and the inner cellular mass (ICM). The ICM further differentiates into the epiblast (EPI)---which gives rise to the endoderm, mesoderm and ectoderm---and the primitive endoderm (PE) which develops into the amniotic sack. Guo et al selected 48 genes for expression measurement. They labelled the resulting cells and their labels are included as an aide to visualization."
-date: "2017-02-03 18:25:52 +0000"
-categories: "GPLVM" "Dimensionality Reduction" "Single cell gene expression"
----

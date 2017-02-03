@@ -3,7 +3,7 @@ creators:
 - {affiliation: University of Sheffield, name: 'Zwiessele, Max'}
 - {affiliation: EMBL EBI Hinxton, name: 'Stegle, Oliver'}
 - {affiliation: University of Sheffield, name: 'Lawrence, Neil'}
-date: 2017-02-03 18:25:52 +0000
+date: 2017-02-03 18:36:37 +0000
 description: In this notebook we follow (Buettner and Theis, 2012) and use the GP-LVM
   to analyze some single cell data from (Guo et al., 2010). They performed qPCR TaqMan
   array on single cells from the developing blastocyst in mouse. The data is taken

@@ -6,7 +6,7 @@
   };
 
   &, .hll, pre, code {
-    background-color: #272822 !important;
+    background-color: $dark-gray-color;
     border: none;
   }
 
@@ -22,7 +22,7 @@
     word-wrap: inherit;
 
     &, code {
-      color: #eeffdd;
+      color: $dark-gray-color;
     }
 
     code {
