@@ -42,7 +42,6 @@ for folder in $( ls -d */ )
 do
     printf "+++++++++++++++++++++++++++++++ \n";
     printf "Processing $folder...\n";
-    printf "+++++++++++++++++++++++++++++++ \n";
     check_files $folder;
     #test $? != 0 && echo wtf;
     
@@ -50,7 +49,7 @@ do
     then
         # install requirements
         pip install -r $reqs;
-        printf "\n";
+        #printf "\n";
         echo Running notebook $notebook ...;
         python run_notebook.py $notebook;
         if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
@@ -60,24 +59,24 @@ do
             git commit -m "new: ${SHA} Executed notebook $notebook";
         fi;
     else
-        printf "\n";
+        #printf "\n";
         echo $notebook already run, not rerunning.;
     fi;
     if [ ! -f $folder/zenodo_upload.yml ];
     then
         if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
         then
-            printf "\n";
+            #printf "\n";
             echo Uploading $folder to zenodo;
             python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs $folder;
             git add $folder/zenodo_upload.yml;
             git commit -m "new: $SHA Uploaded to zenodo $folder";
         fi;
     else
-        printf "\n";
-        printf "$folder already uploaded as \n\n$( cat $folder/zenodo_upload.yml )\n";
+        #printf "\n";
+        printf "$folder already uploaded"; # as \n\n$( cat $folder/zenodo_upload.yml )\n";
     fi;
-    printf "\n";
+    printf "+++++++++++++++++++++++++++++++ \n";
 done;
 
 
