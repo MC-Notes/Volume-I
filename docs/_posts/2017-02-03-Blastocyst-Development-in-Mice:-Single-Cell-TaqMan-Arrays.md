@@ -330,7 +330,7 @@ legend_to_the_right(ax2)
 
 
 
-![png](output_18_1.png)
+![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_18_1.png)
 
 
 ### GP-LVM on the Data
@@ -357,7 +357,7 @@ _ = legend_to_the_right(ax2)
 ```
 
 
-![png](output_22_0.png)
+![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_22_0.png)
 
 
 
@@ -369,7 +369,7 @@ _ = legend_to_the_right(ax2)
 ```
 
 
-![png](output_23_0.png)
+![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_23_0.png)
 
 
 This shows nicely the differences in the dataset. 
@@ -403,7 +403,7 @@ legend_to_the_right(ax2)
 ```
 
 
-![png](output_28_0.png)
+![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_28_0.png)
 
 
 
@@ -415,7 +415,7 @@ _ = legend_to_the_right(ax2)
 ```
 
 
-![png](output_29_0.png)
+![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_29_0.png)
 
 
 This gives a really nice result. Broadly speaking two latent dimensions dominate the representation. When we visualize using these two dimensions we can see the entire cell phylogeny laid out nicely in the two dimensions. Additionally we can see the missclassification of the some cells, using the 'standard' approach of repeated k-means clustering and PCA on sub clustered (This was used to get the sample colors of the 64 cellstage).
@@ -440,7 +440,7 @@ _ = legend_to_the_right(ax)
 ```
 
 
-![png](output_35_0.png)
+![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_35_0.png)
 
 
 ### Locally Linear Embedding
@@ -458,7 +458,7 @@ _ = legend_to_the_right(ax)
 ```
 
 
-![png](output_38_0.png)
+![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_38_0.png)
 
 
 ### t-SNE (t-distributed Stochastic Neighbour Embedding)
@@ -475,12 +475,14 @@ _ = legend_to_the_right(ax)
 ```
 
 
-![png](output_41_0.png)
+![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_41_0.png)
 
 
 #### work funded by the BioPreDyn and MLPM projects, it is a collaboration with Nicolas Durrande, Johannes Jaeger.
 
-<!--
+<!--bibtex
+
+
 @article{Buettner2012A-novel,
 	Author = {Buettner, Florian and Theis, Fabian J},
 	Date-Added = {2013-03-19 19:00:08 +0000},
@@ -509,6 +511,7 @@ _ = legend_to_the_right(ax)
 	Year = {2010},
     url = {http://dx.doi.org/10.1016/j.devcel.2010.02.012},
 	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QSEJpYmxpb2dyYXBoeS9hcnRpY2xlL0d1by9SZXNvbHV0aW9uIG9mIGNlbGwgZmF0ZSBkZWNpc2lvbnMgcmV2ZWFsZWQwLnBkZtIXCxgZV05TLmRhdGFPEQI4AAAAAAI4AAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADNZQraSCsAAAAuCVUfUmVzb2x1dGlvbiBvZiBjZWxsIGYjMkUwQzNCLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4MO81nvA4AAAAAAAAAAAABAAUAAAkgAAAAAAAAAAAAAAAAAAAAA0d1bwAAEAAIAADNZQraAAAAEQAIAADNZ7wOAAAAAQAcAC4JVQAuCLAALgirAC4IdgAMtSkABcaDAAIQ6QACAGVNYWNpbnRvc2ggSEQ6VXNlcnM6AG1heHo6AERyb3Bib3g6AFBhcGVyOgBCaWJsaW9ncmFwaHk6AGFydGljbGU6AEd1bzoAUmVzb2x1dGlvbiBvZiBjZWxsIGYjMkUwQzNCLnBkZgAADgBgAC8AUgBlAHMAbwBsAHUAdABpAG8AbgAgAG8AZgAgAGMAZQBsAGwAIABmAGEAdABlACAAZABlAGMAaQBzAGkAbwBuAHMAIAByAGUAdgBlAGEAbABlAGQAMAAuAHAAZABmAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAASABEABIAYVVzZXJzL21heHovRHJvcGJveC9QYXBlci9CaWJsaW9ncmFwaHkvYXJ0aWNsZS9HdW8vUmVzb2x1dGlvbiBvZiBjZWxsIGZhdGUgZGVjaXNpb25zIHJldmVhbGVkMC5wZGYAABMAAS8AABUAAgAL//8AAIAG0hscHR5aJGNsYXNzbmFtZVgkY2xhc3Nlc11OU011dGFibGVEYXRhox0fIFZOU0RhdGFYTlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVkQXJjaGl2ZXLRJidUcm9vdIABAAgAEQAaACMALQAyADcAQABGAE0AVQBgAGcAagBsAG4AcQBzAHUAdwCEAI4A2QDeAOYDIgMkAykDNAM9A0sDTwNWA18DZANxA3QDhgOJA44AAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADkA==}}
+
 -->
 
 # References
@@ -519,10 +522,9 @@ _ = legend_to_the_right(ax)
 
 
 ---
-layout: page
+layout: post
 title: "Blastocyst Development in Mice: Single Cell TaqMan Arrays"
 description: "In this notebook we follow (Buettner and Theis, 2012) and use the GP-LVM to analyze some single cell data from (Guo et al., 2010). They performed qPCR TaqMan array on single cells from the developing blastocyst in mouse. The data is taken from the early stages of development when the Blastocyst is forming. At the 32 cell stage the data is already separated into the trophectoderm (TE) which goes onto form the placenta and the inner cellular mass (ICM). The ICM further differentiates into the epiblast (EPI)---which gives rise to the endoderm, mesoderm and ectoderm---and the primitive endoderm (PE) which develops into the amniotic sack. Guo et al selected 48 genes for expression measurement. They labelled the resulting cells and their labels are included as an aide to visualization."
-date: "2017-02-03 16:50:09 +0000"
-tags: "GPLVM" "Dimensionality Reduction" "Single cell gene expression"
-accepted: "false"
+date: "2017-02-03 18:25:52 +0000"
+categories: "GPLVM" "Dimensionality Reduction" "Single cell gene expression"
 ---

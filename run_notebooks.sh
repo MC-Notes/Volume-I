@@ -31,14 +31,23 @@ function check_files {
     local exit_after=0
     
     # Do not run on gh-pages
-    test $folder == docs && (printf "Not running on gh-pages" 1>&2; exit 3);
+    if [ $folder == "docs/" ];
+    then
+        printf "Not running on gh-pages\n" 1>&2; 
+        return 0;
+    fi;
     
     # Make sure files exist
-    test ! -f $reqs && (printf "Missing requirements.txt for $folder, please provide requirements as described in the readme (or empty file if no requirements)." 1>&2; exit_after=1);
-    test ! -f $metadata && (printf "Missing metadata.yml for $folder, please provide metadata as described in the readme." 1>&2; exit_after=1);
-    test $( ls -1 $folder/*.ipynb | wc -l ) != 1 -a ! -f $folder/executed_notebook.ipynb && (printf "Found more than one notebook in note $folder, only one notebook is allowed" 1>&2; exit_after=1);
-    test $( ls -1 $folder/ | wc -l ) != 3 -a $( ls -1 $folder/ | wc -l ) != 4 -a $( ls -1 $folder/ | wc -l ) != 5 && (printf "Found more then 3 files in $folder, files are \n$( ls -1 $folder/ )" 1>&2; exit_after=1);
-    test $exit_after == 1 && exit 3;
+    test ! -f $reqs && (printf "Missing requirements.txt for $folder, please provide requirements as described in the readme (or empty file if no requirements).\n" 1>&2; exit_after=1);
+    test ! -f $metadata && (printf "Missing metadata.yml for $folder, please provide metadata as described in the readme.\n" 1>&2; exit_after=1);
+    #test $( ls -1 $folder/*.ipynb | wc -l ) != 1 -a ! -f $folder/executed_notebook.ipynb && (printf "Found more than one notebook in note $folder, only one notebook is allowed\n" 1>&2; exit_after=1);
+    #test $( ls -1 $folder/ | wc -l ) != 3 -a $( ls -1 $folder/ | wc -l ) != 4 -a $( ls -1 $folder/ | wc -l ) != 5 && (printf "Found more then 3 files in $folder, files are \n$( ls -1 $folder/ )\n" 1>&2; exit_after=1);
+    if [ $exit_after == 1 ];
+    then
+        return 0;
+    else
+        return 1;
+    fi
 }
 
 for folder in $( ls -d */ )
@@ -46,7 +55,7 @@ do
     printf "+++++++++++++++++++++++++++++++ \n";
     printf "Processing $folder...\n";
     check_files $folder;
-    #test $? != 0 && echo wtf;
+    test $? == 0 && continue;
     
     if [ ! -f $folder/executed_notebook.ipynb ] || [ ! -f $folder/executed_notebook.md ]; # Only run if not already:
     then

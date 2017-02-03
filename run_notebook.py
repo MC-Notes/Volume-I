@@ -4,7 +4,7 @@
 import sys
 import os
 
-def create_meta_header(mdnb, folder):
+def create_meta_header(folder):
     """
     Add metadata to a converted markdown notebook
     """
@@ -14,11 +14,13 @@ def create_meta_header(mdnb, folder):
         
     meta_objects = ["---"]
     def _add_meta(meta, key, meta_objects, meta_key=None):
-        if meta.has_key(key):
+        if key in meta:
             meta_key = meta_key or key
             meta_value = meta[key]
             if type(meta_value) is list:
-                meta_value = ' '.join(meta_value)
+                meta_value = ' '.join(map(lambda x: '\"{}\"'.format(x), meta_value))
+            else:
+                meta_value = '\"{}\"'.format(meta_value)
             meta_objects.append('{}: {}'.format(meta_key, meta_value))
 
     meta_objects.append('layout: post')
@@ -29,12 +31,17 @@ def create_meta_header(mdnb, folder):
     meta['date'] = time.strftime("%Y-%m-%d %H:%M:%S %z")
     _add_meta(meta, 'date', meta_objects)
     
-    _add_meta(meta, 'keywords', meta_objects, meta_key='tags')
+    _add_meta(meta, 'keywords', meta_objects, meta_key='categories')
     
-    meta.set_default('accepted')
+    meta.setdefault('accepted', 'false')
+    #_add_meta(meta, 'accepted', meta_objects)
     
     meta_objects.append('---')
-    return '\n'.join(meta_objects), time.strftime("%Y-%m-%d-{}.md".format('-'.join(meta['title'].split(' '))))
+    
+    with open('{}/metadata.yml'.format(folder), 'w') as f:
+        yaml.dump(meta, f)
+    
+    return '\n'.join(meta_objects), time.strftime("%Y-%m-%d-{}".format('-'.join(meta['title'].split(' '))))
     
     
 def main(argv=None):
@@ -46,31 +53,40 @@ def main(argv=None):
 
     notebook = argv[0]
     note_folder = os.path.dirname(notebook)
-    with open(notebook) as f:
-        nb = nbformat.read(f, as_version=4)
     
-    #print('Running notebook {} ...'.format(argv[0]))
-    ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
-    try:
-        nb, resources = ep.preprocess(nb, {'metadata': {'path': note_folder}})
-    except CellExecutionError as c:
-        print(c)
-        return 2
+    if not os.path.exists('{}/executed_notebook.ipynb'.format(note_folder)):
+        with open(notebook) as f:
+            nb = nbformat.read(f, as_version=4)
+        #print('Running notebook {} ...'.format(argv[0]))
+        ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
+        try:
+            nb, resources = ep.preprocess(nb, {'metadata': {'path': note_folder}})
+        except CellExecutionError as c:
+            print(c)
+            return 2
+        with open('{}/executed_notebook.ipynb'.format(note_folder), 'wt') as f:
+            nbformat.write(nb, f)    
+    else:
+        with open('{}/executed_notebook.ipynb'.format(note_folder), 'r') as f:
+            nb = nbformat.read(f, as_version=4)
+    
+    header, filename = create_meta_header(note_folder) # Generate metadata header
+    mdexport = MarkdownExporter()
+    mdnb, mdresources = mdexport.from_notebook_node(nb, resources=dict(output_files_dir='{}/'.format(filename)))
+    
+    from nbconvert.writers import FilesWriter
+    
+    fw = FilesWriter(build_directory=note_folder, relpath='_images/')
+    import ipdb;ipdb.set_trace()
+    fw.write(mdnb, mdresources, 'executed_notebook')
 
-    with open('{}/executed_notebook.ipynb'.format(note_folder), 'wt') as f:
-        nbformat.write(nb, f)
-
-    mdconvert = MarkdownExporter()
-    mdnb, mdresources = mdconvert.from_notebook_node(nb, resources)
-
-    with open('{}/executed_notebook.md'.format(note_folder), 'wt') as f:
-        f.write(mdnb)
-
-    header, filename = create_meta_header(mdnb, note_folder)
-    with open('docs/_posts/{}'.format(filename), 'wt') as f:
+    # Make blog post
+    fw = FilesWriter(build_directory='docs/_posts/', relpath='{}/_images/'.format(filename))
+    fw.write(mdnb, mdresources, filename)
+    with open('docs/_posts/{}.md'.format(filename), 'a+') as f:
+        f.seek(0)
         f.write(header)
-        f.writeline()
-        f.write(mdnb)
+        f.write('\n')
         
     
     return 0

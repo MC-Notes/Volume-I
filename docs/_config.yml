@@ -1,2 +1,10 @@
 #baseurl: https://github.com/MC-Notes/mc-notes.github.io
 port: 4001
+
+# Permalinks
+permalink: /:year/:month/:day/:title/
+
+markdown: redcarpet
+
+redcarpet:
+    extensions: ["no_intra_emphasis", "tables", "autolink", "strikethrough", "with_toc_data"]

@@ -13,17 +13,20 @@ body_class: home-intro
 
     <div class="intro-desc">
         <h3>Accepted Submissions</h3>
-        {% for post in site.categories.accepted %}
-            <div class="button-table">
-                <a href="post.url" class="button button-ghost" role="button">{{ post.title }}</a>
-            </div>
+        {% for post in site.posts %}
+            {% if post.accepted == true %}
+                <div class="button-table">
+                    <a href="{{ post.url }}" class="button button-ghost" role="button">{{ post.title }}</a>
+                </div>
+            {% endif %}
         {% endfor %}
         
         <h3>Submissions under Review</h3>
-        {% for post in site.categories.submitted %}
-            <div class="button-table">
-                <a href="post.url" class="button button-ghost" role="button">{{ post.title }}</a>
-            </div>
+        {% for post in site.posts %}
+                <div class="button-table">
+                    <a href="{{ post.url }}" class="button button-ghost" role="button">{{ post.title }}</a>
+                </div>
+            
         {% endfor %}
     </div>
   
