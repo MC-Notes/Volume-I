@@ -330,7 +330,7 @@ legend_to_the_right(ax2)
 
 
 
-![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_18_1.png)
+![png](output_18_1.png)
 
 
 ### GP-LVM on the Data
@@ -357,7 +357,7 @@ _ = legend_to_the_right(ax2)
 ```
 
 
-![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_22_0.png)
+![png](output_22_0.png)
 
 
 
@@ -369,7 +369,7 @@ _ = legend_to_the_right(ax2)
 ```
 
 
-![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_23_0.png)
+![png](output_23_0.png)
 
 
 This shows nicely the differences in the dataset. 
@@ -403,7 +403,7 @@ legend_to_the_right(ax2)
 ```
 
 
-![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_28_0.png)
+![png](output_28_0.png)
 
 
 
@@ -415,7 +415,7 @@ _ = legend_to_the_right(ax2)
 ```
 
 
-![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_29_0.png)
+![png](output_29_0.png)
 
 
 This gives a really nice result. Broadly speaking two latent dimensions dominate the representation. When we visualize using these two dimensions we can see the entire cell phylogeny laid out nicely in the two dimensions. Additionally we can see the missclassification of the some cells, using the 'standard' approach of repeated k-means clustering and PCA on sub clustered (This was used to get the sample colors of the 64 cellstage).
@@ -440,7 +440,7 @@ _ = legend_to_the_right(ax)
 ```
 
 
-![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_35_0.png)
+![png](output_35_0.png)
 
 
 ### Locally Linear Embedding
@@ -458,7 +458,7 @@ _ = legend_to_the_right(ax)
 ```
 
 
-![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_38_0.png)
+![png](output_38_0.png)
 
 
 ### t-SNE (t-distributed Stochastic Neighbour Embedding)
@@ -475,7 +475,7 @@ _ = legend_to_the_right(ax)
 ```
 
 
-![png](2017-02-03-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_41_0.png)
+![png](output_41_0.png)
 
 
 #### work funded by the BioPreDyn and MLPM projects, it is a collaboration with Nicolas Durrande, Johannes Jaeger.
