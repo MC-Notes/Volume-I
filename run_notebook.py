@@ -4,6 +4,39 @@
 import sys
 import os
 
+def create_meta_header(mdnb, folder):
+    """
+    Add metadata to a converted markdown notebook
+    """
+    import yaml
+    with open('{}/metadata.yml'.format(folder), 'r') as f:
+        meta = yaml.load(f)
+        
+    meta_objects = ["---"]
+    def _add_meta(meta, key, meta_objects, meta_key=None):
+        if meta.has_key(key):
+            meta_key = meta_key or key
+            meta_value = meta[key]
+            if type(meta_value) is list:
+                meta_value = ' '.join(meta_value)
+            meta_objects.append('{}: {}'.format(meta_key, meta_value))
+
+    meta_objects.append('layout: post')
+    _add_meta(meta, 'title', meta_objects)
+    _add_meta(meta, 'description', meta_objects)
+
+    import time
+    meta['date'] = time.strftime("%Y-%m-%d %H:%M:%S %z")
+    _add_meta(meta, 'date', meta_objects)
+    
+    _add_meta(meta, 'keywords', meta_objects, meta_key='tags')
+    
+    meta.set_default('accepted')
+    
+    meta_objects.append('---')
+    return '\n'.join(meta_objects), time.strftime("%Y-%m-%d-{}.md".format('-'.join(meta['title'].split(' '))))
+    
+    
 def main(argv=None):
     argv = sys.argv[1:]
     import nbformat
@@ -27,10 +60,18 @@ def main(argv=None):
     with open('{}/executed_notebook.ipynb'.format(note_folder), 'wt') as f:
         nbformat.write(nb, f)
 
+    mdconvert = MarkdownExporter()
+    mdnb, mdresources = mdconvert.from_notebook_node(nb, resources)
+
     with open('{}/executed_notebook.md'.format(note_folder), 'wt') as f:
-        mdconvert = MarkdownExporter()
-        mdnb, mdresources = mdconvert.from_notebook_node(nb, resources)
         f.write(mdnb)
+
+    header, filename = create_meta_header(mdnb, note_folder)
+    with open('docs/_posts/{}'.format(filename), 'wt') as f:
+        f.write(header)
+        f.writeline()
+        f.write(mdnb)
+        
     
     return 0
 

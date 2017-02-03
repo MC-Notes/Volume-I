@@ -18,6 +18,13 @@ body_class: home-intro
                 <a href="post.url" class="button button-ghost" role="button">{{ post.title }}</a>
             </div>
         {% endfor %}
+        
+        <h3>Submissions under Review</h3>
+        {% for post in site.categories.submitted %}
+            <div class="button-table">
+                <a href="post.url" class="button button-ghost" role="button">{{ post.title }}</a>
+            </div>
+        {% endfor %}
     </div>
   
   </div>

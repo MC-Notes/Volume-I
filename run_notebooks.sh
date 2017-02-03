@@ -31,7 +31,7 @@ function check_files {
     local exit_after=0
     
     # Do not run on gh-pages
-    test $folder = gh-pages && (printf "Not running on gh-pages" 1>&2; exit 3);
+    test $folder == docs && (printf "Not running on gh-pages" 1>&2; exit 3);
     
     # Make sure files exist
     test ! -f $reqs && (printf "Missing requirements.txt for $folder, please provide requirements as described in the readme (or empty file if no requirements)." 1>&2; exit_after=1);
