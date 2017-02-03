@@ -1,4 +1,0 @@
-#!/bin/bash
-export JEKYLL_GITHUB_TOKEN=1b8fbce7fb62c7d63c96396cd0ed50766f7f394c
-export SSL_CERT_FILE=./cacert.pem
-jekyll serve
