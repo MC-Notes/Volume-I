@@ -1,0 +1,63 @@
+body.home-intro {
+    width: 100%;
+    display: table;
+
+    .intro {
+	display: table-cell;
+    }
+}
+
+.intro {
+    vertical-align: top;
+    position: relative;
+    #text-align: center;
+    color: $lighter-gray-color;
+    background: darken($primary-color, 6%);
+}
+
+.intro-in {
+    z-index: 2;
+    text-align: left;
+    height: 100%;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.intro-title,
+.post-header .post-title {
+    font-size: 2.5rem;
+    margin: 0pt 0 0px;
+    color: $white-color;
+    font-weight: $font-weight-light;
+
+    @include media($min-tablet) {
+	font-size: 2.5rem;
+    }
+
+    @include media($min-tablet-large) {
+	font-size: 2.6rem;
+    }
+    
+    @include media($min-desktop-large) {
+	font-size: 2.7rem;
+    }
+}
+
+.intro-subtitle {
+    font-size: 1.2rem;
+    font-family: $serif-font-family;
+    font-weight: $font-weight-normal;
+    font-style: italic;
+
+    @include media($min-tablet-large) {
+    font-size: 1.3rem;
+    }
+    
+    @include media($min-desktop-large) {
+    font-size: 1.4rem;
+    }
+    
+}
+
+.intro-desc {
+    font-size: 1em
+}
