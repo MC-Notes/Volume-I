@@ -83,9 +83,12 @@ do
     printf "+++++++++++++++++++++++++++++++ \n\n";
 done;
 
-
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     if [ "$CI" == "true" ]; then
+        if [ -z `git diff --exit-code` ]; then
+            echo "No changes to the output on this push; exiting."
+            exit 0
+        fi
         git push $SSH_REPO "$TRAVIS_BRANCH";
     else
         echo Updated tree, see git status for details.;
