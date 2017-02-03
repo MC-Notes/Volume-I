@@ -86,7 +86,7 @@ done;
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     if [ "$CI" == "true" ]; then
-        git push origin "$TRAVIS_BRANCH";
+        git push $REPO "$TRAVIS_BRANCH";
     else
         echo Updated tree, see git status for details.;
     fi;
