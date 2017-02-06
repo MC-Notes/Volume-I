@@ -22,7 +22,7 @@
     word-wrap: inherit;
 
     &, code {
-      color: $dark-gray-color;
+      color: #bf7373;
     }
 
     code {
@@ -37,7 +37,7 @@
 
 
   .c { color: #75715e } /* Comment */
-  .err { color: #f2f1f2 } /* Error */
+  .err { color: #a02e2e } /* Error */
   .k { color: #66d9ef } /* Keyword */
   .l { color: #ae81ff } /* Literal */
   .n { color: #f8f8f2 } /* Name */
@@ -64,7 +64,7 @@
   .no { color: #66d9ef } /* Name.Constant */
   .nd { color: #a6e22e } /* Name.Decorator */
   .ni { color: #f8f8f2 } /* Name.Entity */
-  .ne { color: #a6e22e } /* Name.Exception */
+  .ne { color: #a02e2e } /* Name.Exception */
   .nf { color: #a6e22e } /* Name.Function */
   .nl { color: #f8f8f2 } /* Name.Label */
   .nn { color: #f8f8f2 } /* Name.Namespace */
