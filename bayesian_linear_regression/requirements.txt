@@ -4,4 +4,5 @@ GPy
 pods
 pandas
 matplotlib
+scikit-learn
 seaborn
