@@ -55,6 +55,8 @@ function check_files {
     fi
 }
 
+python -c "import yaml; print(yaml)"
+
 for folder in $( ls -d */ )
 do
     printf "+++++++++++++++++++++++++++++++ \n";
