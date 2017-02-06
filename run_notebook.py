@@ -18,12 +18,12 @@ def create_meta_header(folder):
             meta_key = meta_key or key
             meta_value = meta[key]
             if type(meta_value) is list:
-                meta_value = ' '.join(map(lambda x: '\"{}\"'.format(x), meta_value))
+                meta_value = str(map(lambda x: '{}'.format(x), map(str, meta_value)))
             else:
                 meta_value = '\"{}\"'.format(meta_value)
             meta_objects.append('{}: {}'.format(meta_key, meta_value))
 
-    meta_objects.append('layout: post')
+    meta_objects.append('layout: \"page\"')
     _add_meta(meta, 'title', meta_objects)
     _add_meta(meta, 'description', meta_objects)
 
@@ -34,7 +34,7 @@ def create_meta_header(folder):
     _add_meta(meta, 'keywords', meta_objects, meta_key='categories')
     
     meta.setdefault('accepted', 'false')
-    #_add_meta(meta, 'accepted', meta_objects)
+    _add_meta(meta, 'accepted', meta_objects)
     
     meta_objects.append('---')
     
@@ -49,7 +49,7 @@ def main(argv=None):
     import nbformat
     from nbconvert.preprocessors import ExecutePreprocessor
     from nbconvert.preprocessors.execute import CellExecutionError
-    from nbconvert.exporters import MarkdownExporter
+    from nbconvert.exporters import MarkdownExporter, HTMLExporter
 
     notebook = argv[0]
     note_folder = os.path.dirname(notebook)
@@ -72,6 +72,7 @@ def main(argv=None):
     
     header, filename = create_meta_header(note_folder) # Generate metadata header
     mdexport = MarkdownExporter()
+    htmlexport = HTMLExporter()
     
     from nbconvert.writers import FilesWriter
     
@@ -81,14 +82,14 @@ def main(argv=None):
 
     # Make blog post
     mdnb, mdresources = mdexport.from_notebook_node(nb, resources=dict(output_files_dir='../assets/posts/images/{}/'.format(filename), encoding='utf-8'))
-    fw = FilesWriter(build_directory='docs/_posts/', relpath='{}/_images/'.format(filename))
-    fw.write(mdnb, mdresources, filename)
+    #fw = FilesWriter(build_directory='docs/_posts/', relpath='{}/_images/'.format(filename))
+    #fw.write(mdnb, mdresources, filename)
     import codecs
     with codecs.open('docs/_posts/{}.md'.format(filename), 'w', 'utf-8') as f:
         f.seek(0)
         f.write(header)
         f.write('\n')
-        f.write(mdnb)
+        #f.write(mdnb)
         
     
     return 0
