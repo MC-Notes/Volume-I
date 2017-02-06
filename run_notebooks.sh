@@ -14,13 +14,18 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         eval `ssh-agent -s`;
         ssh-add github_deploy;
         echo $REPO
-        #git clone --branch=$TRAVIS_BRANCH $REPO out
-        #cd out
+        ZENODO_ACCESS_TOKEN=`cat zenodo-access`;
+        ZENODO_ACCESS=https://sandbox.zenodo.org/api/deposit/depositions;
+        git clone $REPO out
+        cd out
+        git checkout $TRAVIS_BRANCH
         git config user.name "Travis CI";
         git config user.email "$COMMIT_AUTHOR_EMAIL";
+    else
+        # Remove these 2 lines for deploy:
+        ZENODO_ACCESS_TOKEN=`cat zenodo-access`;
+        ZENODO_ACCESS=https://sandbox.zenodo.org/api/deposit/depositions;
     fi;
-    ZENODO_ACCESS_TOKEN=`cat zenodo-access`;
-    ZENODO_ACCESS=https://sandbox.zenodo.org/api/deposit/depositions;
 fi;
 
 function check_files {
