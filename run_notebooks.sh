@@ -76,6 +76,7 @@ do
             echo "Adding executed notebook to github ...";
             git add $folder/executed_notebook.ipynb;
             git add $folder/executed_notebook.md;
+            git add $folder/images/*.png
             git commit -m "new: ${SHA} Executed notebook $notebook";
         fi;
     else
