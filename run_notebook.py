@@ -90,9 +90,11 @@ def main(argv=None):
         f.write(header)
         f.write('\n')
         #f.write(mdnb)
-        
-    
     return 0
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        main()
+    except Exception as e:
+        print(e)
+        sys.exit(2)
