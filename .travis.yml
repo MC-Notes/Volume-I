@@ -18,6 +18,6 @@ install:
 - echo $PATH
 - source install_retry.sh
 - conda install --yes jupyter ipywidgets yaml
-- pip install pypandoc
+- pip install pypandoc yaml
 script:
 - bash run_notebooks.sh
