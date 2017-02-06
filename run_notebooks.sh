@@ -81,9 +81,9 @@ do
         then
             #printf "\n";
             echo Uploading $folder to zenodo;
-            python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs $folder;
-            git add $folder/zenodo_upload.yml;
-            git commit -m "new: $SHA Uploaded to zenodo $folder";
+            #python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $folder/executed_notebook.ipynb $reqs $folder;
+            #git add $folder/zenodo_upload.yml;
+            #git commit -m "new: $SHA Uploaded to zenodo $folder";
         fi;
     else
         #printf "\n";
