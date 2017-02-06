@@ -14,8 +14,9 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         eval `ssh-agent -s`;
         ssh-add github_deploy;
         echo $REPO
-        #git clone --branch=$TRAVIS_BRANCH $REPO out
-        #cd out
+        git clone $REPO out
+        cd out
+        git checkout $TRAVIS_BRANCH
         git config user.name "Travis CI";
         git config user.email "$COMMIT_AUTHOR_EMAIL";
     fi;
@@ -79,7 +80,7 @@ do
     then
         if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
         then
-            #printf "\n";
+            printf "\n";
             echo Uploading $folder to zenodo;
             #python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $folder/executed_notebook.ipynb $reqs $folder;
             #git add $folder/zenodo_upload.yml;
@@ -94,10 +95,10 @@ done;
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     if [ "$CI" == "true" ]; then
-        if [ -z `git diff --exit-code` ]; then
-            echo "No changes to the output on this push; exiting."
-            exit 0
-        fi
+        #if [ -z `git diff --exit-code` ]; then
+        #    echo "No changes to the output on this push; exiting."
+        #    exit 0
+        #fi
         git push $SSH_REPO "$TRAVIS_BRANCH";
     else
         echo Updated tree, see git status for details.;
