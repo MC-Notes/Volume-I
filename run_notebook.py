@@ -72,18 +72,19 @@ def main(argv=None):
     
     header, filename = create_meta_header(note_folder) # Generate metadata header
     mdexport = MarkdownExporter()
-    mdnb, mdresources = mdexport.from_notebook_node(nb, resources=dict(output_files_dir='{}/'.format(filename)))
     
     from nbconvert.writers import FilesWriter
     
-    fw = FilesWriter(build_directory=note_folder, relpath='_images/')
-    import ipdb;ipdb.set_trace()
+    mdnb, mdresources = mdexport.from_notebook_node(nb, resources=dict(output_files_dir='images/'.format(filename), encoding='utf-8'))
+    fw = FilesWriter(build_directory=note_folder)
     fw.write(mdnb, mdresources, 'executed_notebook')
 
     # Make blog post
+    mdnb, mdresources = mdexport.from_notebook_node(nb, resources=dict(output_files_dir='../assets/posts/images/{}/'.format(filename), encoding='utf-8'))
     fw = FilesWriter(build_directory='docs/_posts/', relpath='{}/_images/'.format(filename))
     fw.write(mdnb, mdresources, filename)
-    with open('docs/_posts/{}.md'.format(filename), 'w') as f:
+    import codecs
+    with codecs.open('docs/_posts/{}.md'.format(filename), 'w', 'utf-8') as f:
         f.seek(0)
         f.write(header)
         f.write('\n')
