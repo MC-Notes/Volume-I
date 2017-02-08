@@ -1,4 +1,4 @@
-#baseurl: https://github.com/MC-Notes/mc-notes.github.io
+baseurl: /Issue1
 port: 4001
 
 # Permalinks

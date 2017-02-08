@@ -15,7 +15,7 @@ body_class: home-intro
         <h3>Accepted Submissions</h3>
         {% for post in site.posts %}
                 <div class="button-table">
-                    <a href="{{ post.url }}" class="button button-ghost" role="button">{{ post.title }}</a>
+                    <a href="{{ site.baseurl }}{{ post.url }}" class="button button-ghost" role="button">{{ post.title }}</a>
                 </div>
         {% endfor %}
         <h3>Submissions under Review</h3>
