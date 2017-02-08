@@ -13,13 +13,17 @@ body_class: home-intro
 
     <div class="intro-desc">
         <h3>Accepted Submissions</h3>
- 
-        <h3>Submissions under Review</h3>
         {% for post in site.posts %}
                 <div class="button-table">
                     <a href="{{ post.url }}" class="button button-ghost" role="button">{{ post.title }}</a>
                 </div>
-            
+        {% endfor %}
+        <h3>Submissions under Review</h3>
+        {{ site.github.repo_pages }}
+        {% for pull in site.github.repository.pulls %}
+                <div class="button-table">
+                    <a href="{{ pull.url }}" class="button button-ghost" role="button">{{ pull.name }}</a>
+                </div>
         {% endfor %}
     </div>
   

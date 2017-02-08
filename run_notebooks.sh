@@ -1,4 +1,5 @@
 #!/bin/bash
+#set -e # halt on error
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     if [ "$CI" == "true" ]; then
@@ -55,8 +56,6 @@ function check_files {
     fi
 }
 
-python -c "import yaml; print(yaml)"
-
 for folder in $( ls -d */ )
 do
     printf "+++++++++++++++++++++++++++++++ \n";
@@ -76,6 +75,7 @@ do
             echo "Adding executed notebook to github ...";
             git add $folder/executed_notebook.ipynb;
             git add $folder/executed_notebook.md;
+            git add $folder/images/*.png
             git commit -m "new: ${SHA} Executed notebook $notebook";
         fi;
     else
@@ -86,11 +86,11 @@ do
     then
         if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
         then
-            #printf "\n";
+            printf "\n";
             echo Uploading $folder to zenodo;
-            python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $notebook $reqs $folder;
-            git add $folder/zenodo_upload.yml;
-            git commit -m "new: $SHA Uploaded to zenodo $folder";
+            #python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $folder/executed_notebook.ipynb $reqs $folder;
+            #git add $folder/zenodo_upload.yml;
+            #git commit -m "new: $SHA Uploaded to zenodo $folder";
         fi;
     else
         #printf "\n";
@@ -101,10 +101,10 @@ done;
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     if [ "$CI" == "true" ]; then
-        if [ -z `git diff --exit-code` ]; then
-            echo "No changes to the output on this push; exiting."
-            exit 0
-        fi
+        #if [ -z `git diff --exit-code` ]; then
+        #    echo "No changes to the output on this push; exiting."
+        #    exit 0
+        #fi
         git push $SSH_REPO "$TRAVIS_BRANCH";
     else
         echo Updated tree, see git status for details.;
