@@ -4,11 +4,15 @@ port: 4001
 # Permalinks
 permalink: /:year/:month/:day/:title/
 
-#markdown: redcarpet
-#redcarpet:
-#    extensions: ["no_intra_emphasis", "tables", "autolink", "strikethrough", "with_toc_data"]
-    
 markdown: kramdown
-highlighter: rouge
+markdown_ext: markdown,md
+#pandoc:
+#  extensions: 
+#    - smart
+#    - mathjax
     
 encoding: utf-8
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
