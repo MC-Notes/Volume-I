@@ -49,7 +49,7 @@ def main(argv=None):
     import nbformat
     from nbconvert.preprocessors import ExecutePreprocessor
     from nbconvert.preprocessors.execute import CellExecutionError
-    from nbconvert.exporters import MarkdownExporter, HTMLExporter
+    from nbconvert.exporters import MarkdownExporter
 
     notebook = argv[0]
     note_folder = os.path.dirname(notebook)
@@ -72,7 +72,7 @@ def main(argv=None):
     
     header, filename = create_meta_header(note_folder) # Generate metadata header
     mdexport = MarkdownExporter()
-    htmlexport = HTMLExporter()
+    #htmlexport = HTMLExporter()
     
     from nbconvert.writers import FilesWriter
     
@@ -82,14 +82,14 @@ def main(argv=None):
 
     # Make blog post
     mdnb, mdresources = mdexport.from_notebook_node(nb, resources=dict(output_files_dir='../assets/posts/images/{}/'.format(filename), encoding='utf-8'))
-    #fw = FilesWriter(build_directory='docs/_posts/', relpath='{}/_images/'.format(filename))
-    #fw.write(mdnb, mdresources, filename)
+    fw = FilesWriter(build_directory='docs/_posts/', relpath='../assets/posts/images/{}/'.format(filename))
+    fw.write(mdnb, mdresources, filename)
     import codecs
     with codecs.open('docs/_posts/{}.md'.format(filename), 'w', 'utf-8') as f:
         f.seek(0)
         f.write(header)
         f.write('\n')
-        #f.write(mdnb)
+        f.write(mdnb.replace('{{', '{ {').replace('<!--', '```').replace('-->', '```').replace('../assets', '{{ site.url }}/assets'))
     return 0
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 #!/bin/bash
+#set -e # halt on error
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     if [ "$CI" == "true" ]; then
@@ -54,8 +55,6 @@ function check_files {
         return 1;
     fi
 }
-
-python -c "import yaml; print(yaml)"
 
 for folder in $( ls -d */ )
 do
