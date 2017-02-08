@@ -89,7 +89,10 @@ def main(argv=None):
         f.seek(0)
         f.write(header)
         f.write('\n')
-        f.write(mdnb.replace('{{', '{ {').replace('<!--', '```').replace('-->', '```').replace('../assets', '{{ site.url }}/assets'))
+        adjusted_nb = mdnb.replace('{{', '{ {').replace('<!--', '```').replace('-->', '```').replace('../assets', '{{ site.url }}/assets')
+        adjusted_nb = adjusted_nb.replace('$', '$$')
+        adjusted_nb = adjusted_nb.replace('$$$', '$$')
+        f.write(adjusted_nb)
     return 0
 
 if __name__ == "__main__":
