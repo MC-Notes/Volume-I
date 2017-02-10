@@ -2,9 +2,10 @@
 layout: "page"
 title: "Bayesian Linear Regression using GPy"
 description: "In this notebook we show the progress from simple Bayesian linear regression to Gaussian processes. We show the weight space and function space of GPs using GPy. We focus on using custom base functions to create kernels and do Bayesian estimates of kernel parameters on the base functions."
-date: "2017-02-08 13:01:45 +0000"
+date: "2017-02-10 12:32:04 +0000"
 categories: ['Gaussian processes', 'Bayesian Linear Regression', 'Kernels']
 accepted: "false"
+notebook_url: "bayesian_linear_regression/executed_notebook.ipynb"
 ---
 
 From Linear Regression to Gaussian Processes
@@ -22,20 +23,20 @@ You can download this notebook at <http://staffwww.dcs.sheffield.ac.uk/people/J.
 Linear Regression
 -------------------
 
-One common problem in data analysis is the so called regression problem, where we have one or several input variables $\mathbf{X}\in\mathbb{R}^{n\times p}$ and want to fit the correlation from these variables to an output measurement $\mathbf{y}\in\mathbb{R}^{n\times 1}$. The most simple model to think of is the linear fit 
+One common problem in data analysis is the so called regression problem, where we have one or several input variables $$\mathbf{X}\in\mathbb{R}^{n\times p}$$ and want to fit the correlation from these variables to an output measurement $$\mathbf{y}\in\mathbb{R}^{n\times 1}$$. The most simple model to think of is the linear fit 
 
 \begin{align}
 \mathbf{y} &= c + \mathbf{X}\mathbf{w}\\
 & = c + \sum_{i=1}^p w_i\mathbf{x}_{:i}\enspace,
 \end{align}
 
-which represents a line going through the data with an offset $c$ and a slope $w_i$ for each feature $i\in\{1\dots p\}$ ($\mathbf{w}\in\mathbb{R}^{p\times 1}$). In order to solve this problem, we first make use of matrix algebra and pull the offset $c$ into the parameter vector $\mathbf{w}$ by appending one feature of ones onto $\mathbf{X}$, resulting in out first design matrix $\boldsymbol{\Phi}=(\mathbf{1}, \mathbf{X})$ and writing the above equation without the intercept, which is now covered by the first parameter $w_0$
+which represents a line going through the data with an offset $$c$$ and a slope $$w_i$$ for each feature $$i\in\{1\dots p\}$$ ($$\mathbf{w}\in\mathbb{R}^{p\times 1}$$). In order to solve this problem, we first make use of matrix algebra and pull the offset $$c$$ into the parameter vector $$\mathbf{w}$$ by appending one feature of ones onto $$\mathbf{X}$$, resulting in out first design matrix $$\boldsymbol{\Phi}=(\mathbf{1}, \mathbf{X})$$ and writing the above equation without the intercept, which is now covered by the first parameter $$w_0$$
 
 \begin{align}
 \mathbf{y} = \boldsymbol{\Phi}\mathbf{w}\enspace.
 \end{align}
 
-This way of writing the equation lets us use linear algebra in order to find the optimal fit for the parameters $\mathbf{w}$
+This way of writing the equation lets us use linear algebra in order to find the optimal fit for the parameters $$\mathbf{w}$$
 
 \begin{align}
 \mathbf{y} &= \boldsymbol{\Phi}\mathbf{w}\\
@@ -109,7 +110,7 @@ _ = plot_data(X, y)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_6_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_6_2.png)
 
 
 Having this data, we can now create the first linear fit using the above formula.
@@ -187,22 +188,22 @@ plot_data(X, y, ax=ax)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_10_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_10_2.png)
 
 
 Changing basis functions
 ---------------------------
 
-We have seen, that in changing the design matrix $\boldsymbol{\Phi}$ we can add additional variabels to the regression, such as the intercept with the origin. We can also change the basis to a non-linear basis, such as a polynomial basis, or a mixture of squared exponentials and any other basis we can think of. The solution to the linear regression parameters $\mathbf{w}$ will be the same, but the fit will be non-linear. 
+We have seen, that in changing the design matrix $$\boldsymbol{\Phi}$$ we can add additional variabels to the regression, such as the intercept with the origin. We can also change the basis to a non-linear basis, such as a polynomial basis, or a mixture of squared exponentials and any other basis we can think of. The solution to the linear regression parameters $$\mathbf{w}$$ will be the same, but the fit will be non-linear. 
 
-First we will look at the polynomial basis of degree $d$
+First we will look at the polynomial basis of degree $$d$$
 
 \begin{align}
 \boldsymbol{\Phi} &= (\mathbf{1}, \mathbf{X}, \mathbf{X}^2, \dots, \mathbf{X}^d)\\
 &= (\mathbf{X}^i)_{i=1}^d
 \end{align}
 
-and at the squared exponential basis of degree $d$ with support evenly distributed accross the domain of $\mathbf{X}$ and lengthscale $\ell$
+and at the squared exponential basis of degree $$d$$ with support evenly distributed accross the domain of $$\mathbf{X}$$ and lengthscale $$\ell$$
 
 \begin{align}
 r_i &= \frac{\max\mathbf{X}_i-\min\mathbf{X}_i}{d-1}\\
@@ -278,7 +279,7 @@ plot_basis(X, polynomial(2), plot_intercept=1, resolution=30, ax=ax2)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_14_1.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_14_1.png)
 
 
 Now we will create some more complex (non-linear) simulated data to show the fit of the other basis functions. Also we split the data into a training and test set to show the generization property of the fitted functions.
@@ -338,7 +339,7 @@ poly_errors = plot_fits(X_train, y_train, X_test, y_test, polynomial, predict_ba
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_19_1.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_19_1.png)
 
 
 
@@ -350,7 +351,7 @@ eq_errors = plot_fits(X_train, y_train, X_test, y_test, lambda d: exponentiated_
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_20_1.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_20_1.png)
 
 
 
@@ -400,11 +401,11 @@ ax4.axes.set_yscale('log')
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_22_1.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_22_1.png)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_22_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_22_2.png)
 
 
 Thus, we can do non-linear regression using the trick of transforming the input space into different dimensions and solving the linear system in the high dimensional space. 
@@ -419,13 +420,13 @@ Now that we have seen how linear regression works, we can go on to the Bayesian 
 \varepsilon &\sim \mathcal{N}(0, \sigma^2\mathbf{I})\enspace.
 \end{align}
 
-Additionally we define a prior over the parameters $\mathbf{w}$, which deals as our prior belief of the distribution over the parameters $\mathbf{w}$
+Additionally we define a prior over the parameters $$\mathbf{w}$$, which deals as our prior belief of the distribution over the parameters $$\mathbf{w}$$
 
 \begin{align}
 \mathbf{w} &\sim \mathcal{N}(\mathbf{0}, \alpha\mathbf{I})\enspace.
 \end{align}
 
-Using Bayes theorem, we can compute the posterior distribution over $\mathbf{w}$ given the data, by computing the posterior distribution given the data $\boldsymbol{\Phi}, \mathbf{y}$
+Using Bayes theorem, we can compute the posterior distribution over $$\mathbf{w}$$ given the data, by computing the posterior distribution given the data $$\boldsymbol{\Phi}, \mathbf{y}$$
 
 \begin{align}
 p(\mathbf{w}|\boldsymbol{\Phi}, \mathbf{y}) &\propto p(\mathbf{y}|\boldsymbol{\Phi}, \mathbf{w})p(\mathbf{w})\\
@@ -435,9 +436,9 @@ p(\mathbf{w}|\boldsymbol{\Phi}, \mathbf{y}) &\propto p(\mathbf{y}|\boldsymbol{\P
 \boldsymbol{\mu} &= \sigma^{-2}\mathbf{C}\boldsymbol{\Phi}^\top\mathbf{y}
 \end{align}
 
-The close relationship to the linear regression solution should be visible immediately, another indication that any deterministic expression is a special case of a more general probabilistic expression. The additional parameters of the probabilistic expression are prior belief, first the output variable noise $\sigma^2$ and the prior belief about the spread of parameters $\mathbf{w}$, which we called $\alpha$. 
+The close relationship to the linear regression solution should be visible immediately, another indication that any deterministic expression is a special case of a more general probabilistic expression. The additional parameters of the probabilistic expression are prior belief, first the output variable noise $$\sigma^2$$ and the prior belief about the spread of parameters $$\mathbf{w}$$, which we called $$\alpha$$. 
 
-We can implement this way of solving the system as shown below. We assume a noise variance of $\sigma=0.01$ and a prior spread of parameters of $\alpha=20.0$
+We can implement this way of solving the system as shown below. We assume a noise variance of $$\sigma=0.01$$ and a prior spread of parameters of $$\alpha=20.0$$
 
 
 ```python
@@ -467,7 +468,7 @@ linear_error = plot_fits(X_train, y_train, X_test, y_test, lambda d: exponentiat
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_27_1.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_27_1.png)
 
 
 
@@ -499,7 +500,7 @@ bayesian_errors = concat_be(bayesian_errors, _be, sigma)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_29_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_29_2.png)
 
 
 
@@ -520,7 +521,7 @@ bayesian_errors = concat_be(bayesian_errors, _be, sigma)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_30_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_30_2.png)
 
 
 
@@ -541,7 +542,7 @@ bayesian_errors = concat_be(bayesian_errors, _be, sigma)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_31_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_31_2.png)
 
 
 
@@ -562,7 +563,7 @@ bayesian_errors = concat_be(bayesian_errors, _be, sigma)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_32_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_32_2.png)
 
 
 
@@ -583,10 +584,10 @@ bayesian_errors = concat_be(bayesian_errors, _be, sigma)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_33_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_33_2.png)
 
 
-As one can see, the $\sigma$ parameter induces intrinsic noise in the process and relaxes the fit to the data. This can be seen as a principled, based on probabilistic assumptions penalization of overfitting. Let us see the effect of sigma on the fit:
+As one can see, the $$\sigma$$ parameter induces intrinsic noise in the process and relaxes the fit to the data. This can be seen as a principled, based on probabilistic assumptions penalization of overfitting. Let us see the effect of sigma on the fit:
 
 
 ```python
@@ -617,10 +618,10 @@ ax2.set_title('test')
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_35_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_35_2.png)
 
 
-The model with $\sigma=10^{-10}$ is equivalent to a noise less linear model and therefore comparable to the linear fit without bayesian treatment. We can see that the more basis functions we add in the bayesian fit, we get less test error, but the non-bayesian solution starts to overfit, when highering the number of basis functions. The 3 best fits according to this small cross-validation are shown below
+The model with $$\sigma=10^{-10}$$ is equivalent to a noise less linear model and therefore comparable to the linear fit without bayesian treatment. We can see that the more basis functions we add in the bayesian fit, we get less test error, but the non-bayesian solution starts to overfit, when highering the number of basis functions. The 3 best fits according to this small cross-validation are shown below
 
 
 ```python
@@ -676,7 +677,7 @@ bayesian_errors[bayesian_errors['split']=='test'].sort_values(by=['StdE', 'RMSE'
 Gaussian Process with Basis Functions
 ------------------
 
-In order to get from the linear parametric model to an non-parametric (better: infinite-parameter) model, we maximize the (log-)likelihood of the output data given the inputs w.r.t. the hyperparameters, which are the parameters of the prior distributions we put over the parameters. The parameters $\mathbf{w}$ get integrated over, which implies, that we take all possible values of $\mathbf{w}$ into account in the maximum likelihood solution.
+In order to get from the linear parametric model to an non-parametric (better: infinite-parameter) model, we maximize the (log-)likelihood of the output data given the inputs w.r.t. the hyperparameters, which are the parameters of the prior distributions we put over the parameters. The parameters $$\mathbf{w}$$ get integrated over, which implies, that we take all possible values of $$\mathbf{w}$$ into account in the maximum likelihood solution.
 
 \begin{align}
 p(\mathbf{y}|\boldsymbol{\Phi}, \alpha, \sigma) &= \int p(\mathbf{y}|\boldsymbol{\Phi}, \mathbf{w}, \sigma)p(\mathbf{w}|\alpha) \,\mathrm{d}\mathbf{w}\\
@@ -684,15 +685,15 @@ p(\mathbf{y}|\boldsymbol{\Phi}, \alpha, \sigma) &= \int p(\mathbf{y}|\boldsymbol
 &= \mathcal{N}(\mathbf{y}|\mathbf{0}, \alpha\boldsymbol{\Phi}\boldsymbol{\Phi}^\top + \sigma^2\mathbf{I})
 \end{align}
 
-Thus, we can maximize this marginal likelihood w.r.t. the hyperparameters $\alpha, \sigma$ by log transforming and maximizing:
+Thus, we can maximize this marginal likelihood w.r.t. the hyperparameters $$\alpha, \sigma$$ by log transforming and maximizing:
 
 \begin{align}
 \hat\alpha, \hat\sigma = \mathop{\arg\max}_{\alpha, \sigma}\log p(\mathbf{y}|\boldsymbol{\Phi}, \alpha, \sigma)
 \end{align}
 
-This will choose the most likely hyperparameters $\alpha, \sigma$ for the data to be explained by the basis set spanned by the covariance matrix $\boldsymbol{\Phi}\boldsymbol{\Phi}^\top$. Basically $\alpha$ and $\sigma$ are tradeoff parameters, between random noise $\sigma$ and datafit $\alpha$. 
+This will choose the most likely hyperparameters $$\alpha, \sigma$$ for the data to be explained by the basis set spanned by the covariance matrix $$\boldsymbol{\Phi}\boldsymbol{\Phi}^\top$$. Basically $$\alpha$$ and $$\sigma$$ are tradeoff parameters, between random noise $$\sigma$$ and datafit $$\alpha$$. 
 
-Here we have seen how a Gaussian process can be defined using a design matrix $\boldsymbol\Phi$. Let us see how well this model works and if it chooses the right parameters $\alpha, \sigma$. We will use GPy to do the job for us, where all of these methods are implemented. We will use the fixed covariance structure, spanned by our bases $\boldsymbol\Phi$ and optimize the parameters.
+Here we have seen how a Gaussian process can be defined using a design matrix $$\boldsymbol\Phi$$. Let us see how well this model works and if it chooses the right parameters $$\alpha, \sigma$$. We will use GPy to do the job for us, where all of these methods are implemented. We will use the fixed covariance structure, spanned by our bases $$\boldsymbol\Phi$$ and optimize the parameters.
 
 
 ```python
@@ -748,7 +749,7 @@ m_max_lik
 
 
 
-But now we do not have the parameters anymore, which we used for predicting at newly seen inputs and compare to the test data. We can either use above formula to compute the the probability over $\mathbf{w}$ as before, providing the uncertainty over the parameters
+But now we do not have the parameters anymore, which we used for predicting at newly seen inputs and compare to the test data. We can either use above formula to compute the the probability over $$\mathbf{w}$$ as before, providing the uncertainty over the parameters
 
 \begin{align}
 p(\mathbf{w}|\boldsymbol{\Phi}, \mathbf{y}) &\propto \mathcal{N}(\mathbf{w}|\boldsymbol{\mu}, \mathbf{C}) \cdot \text{const.}\\
@@ -756,7 +757,7 @@ p(\mathbf{w}|\boldsymbol{\Phi}, \mathbf{y}) &\propto \mathcal{N}(\mathbf{w}|\bol
 \boldsymbol{\mu} &= \sigma^{-2}\mathbf{C}\boldsymbol{\Phi}^\top\mathbf{y}\enspace,
 \end{align}
 
-or we predict using the distribution over $\mathbf{y}|\boldsymbol{\Phi}$.
+or we predict using the distribution over $$\mathbf{y}|\boldsymbol{\Phi}$$.
 
 
 ```python
@@ -789,7 +790,7 @@ plot_data(X_test, y_test, ax=ax, marker='o', label='test', edgecolors='none')
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_45_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_45_2.png)
 
 
 
@@ -830,7 +831,7 @@ plot_data(X_test, y_test, ax=ax, marker='o', label='test', edgecolors='none')
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_48_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_48_2.png)
 
 
 
@@ -845,13 +846,13 @@ for i in range(w_realizations.shape[1]):
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_49_1.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_49_1.png)
 
 
 Gaussian Process
 ------------------
 
-As we have seen, we can fit the hyperparameters using the maximum likelihood solution, without the need to do a cross-validation over possible parameter values. We can further generalize this idea to the covariance matrix $\boldsymbol\Phi\boldsymbol\Phi^\top$ by replacing the entries of the covariance matrix by a kernel function between the inputs, which correspond to a dot product in a higher dimensional space $\mathbf{K}_{ij} = k(\mathbf{x}_i, \mathbf{x}_j)$. The only requirement for this covariance function is to produce a semi-positive definite matrix $\mathbf{K}$, as it needs to be inverted in the learning as well as prediction step of GP regression.
+As we have seen, we can fit the hyperparameters using the maximum likelihood solution, without the need to do a cross-validation over possible parameter values. We can further generalize this idea to the covariance matrix $$\boldsymbol\Phi\boldsymbol\Phi^\top$$ by replacing the entries of the covariance matrix by a kernel function between the inputs, which correspond to a dot product in a higher dimensional space $$\mathbf{K}_{ij} = k(\mathbf{x}_i, \mathbf{x}_j)$$. The only requirement for this covariance function is to produce a semi-positive definite matrix $$\mathbf{K}$$, as it needs to be inverted in the learning as well as prediction step of GP regression.
 
 
 ```python
@@ -921,7 +922,7 @@ plot_data(X_test, y_test, ax=ax, marker='o', label='test', edgecolors='none')
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_52_2.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_52_2.png)
 
 
 Now we can compare the fits we have made so far against each other:
@@ -944,7 +945,7 @@ _ = plt.xticks([])
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Bayesian-Linear-Regression-using-GPy/output_54_1.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Bayesian-Linear-Regression-using-GPy/output_54_1.png)
 
 
 The conclusion is, that the linear method can be seen from a Bayesian perspective by defining priors over the parameters and integrating them out. In the linear and Bayesian linear regression case, we need to crossvalidate the parameters according to our test set. This can be challenging, as we need to know th space in which the paramaters occur most likely and choose a fine enough grid to fit the data. This selection can be beneficial, as we see above, but if we do not know the test data, or have not enough samples to split our data into train and test split we need to do a model based data driven approach. On the right hand side of the above plot, we can see the data driven, not crossvalidation dependend solutions, where we maximize the likelihood to see the data under our model. 

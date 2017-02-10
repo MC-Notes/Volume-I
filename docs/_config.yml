@@ -1,6 +1,8 @@
 baseurl: /Issue1
 port: 4001
 
+files_url: https://github.com/MC-Notes/Issue1/blob/master/
+
 # Permalinks
 permalink: /:year/:month/:day/:title/
 

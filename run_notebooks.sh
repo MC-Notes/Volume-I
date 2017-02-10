@@ -22,6 +22,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         git checkout $TRAVIS_BRANCH
         git config user.name "Travis CI";
         git config user.email "$COMMIT_AUTHOR_EMAIL";
+        echo $( curl https://api.github.com/repos/mc-notes/Issue1/pulls )
     else
         # Remove these 2 lines for deploy:
         ZENODO_ACCESS_TOKEN=`cat zenodo-access`;
@@ -50,7 +51,7 @@ function check_files {
     #test $( ls -1 $folder/ | wc -l ) != 3 -a $( ls -1 $folder/ | wc -l ) != 4 -a $( ls -1 $folder/ | wc -l ) != 5 && (printf "Found more then 3 files in $folder, files are \n$( ls -1 $folder/ )\n" 1>&2; exit_after=1);
     if [ $exit_after == 1 ];
     then
-        return 0;
+        return 2;
     else
         return 1;
     fi
@@ -61,7 +62,9 @@ do
     printf "+++++++++++++++++++++++++++++++ \n";
     printf "Processing $folder...\n";
     check_files $folder;
-    test $? == 0 && continue;
+    file_check=$?
+    test file_check == 0 && continue;
+    test file_check == 2 && (printf "Failing test" ; exit 2);
     
     if [ ! -f $folder/executed_notebook.ipynb ] || [ ! -f $folder/executed_notebook.md ]; # Only run if not already:
     then
@@ -87,7 +90,7 @@ do
         if [ "$TRAVIS_PULL_REQUEST" == "false" ]; 
         then
             printf "\n";
-            echo Uploading $folder to zenodo;
+            #echo Uploading $folder to zenodo;
             #python zenodo_upload_doi.py $ZENODO_ACCESS $ZENODO_ACCESS_TOKEN $metadata $folder/executed_notebook.ipynb $reqs $folder;
             #git add $folder/zenodo_upload.yml;
             #git commit -m "new: $SHA Uploaded to zenodo $folder";

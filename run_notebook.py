@@ -36,6 +36,9 @@ def create_meta_header(folder):
     meta.setdefault('accepted', 'false')
     _add_meta(meta, 'accepted', meta_objects)
     
+    meta.setdefault('notebook_url', '{}/executed_notebook.ipynb'.format(folder))
+    _add_meta(meta, 'notebook_url', meta_objects)
+    
     meta_objects.append('---')
     
     with open('{}/metadata.yml'.format(folder), 'w') as f:

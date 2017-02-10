@@ -2,9 +2,10 @@
 layout: "page"
 title: "Blastocyst Development in Mice: Single Cell TaqMan Arrays"
 description: "In this notebook we follow (Buettner and Theis, 2012) and use the GP-LVM to analyze some single cell data from (Guo et al., 2010). They performed qPCR TaqMan array on single cells from the developing blastocyst in mouse. The data is taken from the early stages of development when the Blastocyst is forming. At the 32 cell stage the data is already separated into the trophectoderm (TE) which goes onto form the placenta and the inner cellular mass (ICM). The ICM further differentiates into the epiblast (EPI)---which gives rise to the endoderm, mesoderm and ectoderm---and the primitive endoderm (PE) which develops into the amniotic sack. Guo et al selected 48 genes for expression measurement. They labelled the resulting cells and their labels are included as an aide to visualization."
-date: "2017-02-08 13:01:47 +0000"
+date: "2017-02-10 12:32:06 +0000"
 categories: ['GPLVM', 'Dimensionality Reduction', 'Single cell gene expression']
 accepted: "false"
+notebook_url: "scgplvm/executed_notebook.ipynb"
 ---
 
 # Blastocyst Development in Mice: Single Cell TaqMan Arrays
@@ -338,7 +339,7 @@ legend_to_the_right(ax2)
 
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_18_1.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_18_1.png)
 
 
 ### GP-LVM on the Data
@@ -365,7 +366,7 @@ _ = legend_to_the_right(ax2)
 ```
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_22_0.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_22_0.png)
 
 
 
@@ -377,7 +378,7 @@ _ = legend_to_the_right(ax2)
 ```
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_23_0.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_23_0.png)
 
 
 This shows nicely the differences in the dataset. 
@@ -411,7 +412,7 @@ legend_to_the_right(ax2)
 ```
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_28_0.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_28_0.png)
 
 
 
@@ -423,7 +424,7 @@ _ = legend_to_the_right(ax2)
 ```
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_29_0.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_29_0.png)
 
 
 This gives a really nice result. Broadly speaking two latent dimensions dominate the representation. When we visualize using these two dimensions we can see the entire cell phylogeny laid out nicely in the two dimensions. Additionally we can see the missclassification of the some cells, using the 'standard' approach of repeated k-means clustering and PCA on sub clustered (This was used to get the sample colors of the 64 cellstage).
@@ -448,12 +449,12 @@ _ = legend_to_the_right(ax)
 ```
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_35_0.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_35_0.png)
 
 
 ### Locally Linear Embedding
 
-Next we try locally linear embedding. In locally linear embedding a neighborhood is also computed. Each point is then reconstructed by it's neighbors using a linear weighting. This implies a locally linear patch is being fitted to the data in that region. These patches are assimilated into a large $n\times n$ matrix and a lower dimensional data set which reflects the same relationships is then sought. Quite a large number of neighbours needs to be selected for the data to not collapse in on itself. When a large number of neighbours is selected the embedding is more linear and begins to look like PCA. However, the algorithm does *not* converge to PCA in the limit as the number of neighbors approaches $n$. 
+Next we try locally linear embedding. In locally linear embedding a neighborhood is also computed. Each point is then reconstructed by it's neighbors using a linear weighting. This implies a locally linear patch is being fitted to the data in that region. These patches are assimilated into a large $$n\times n$$ matrix and a lower dimensional data set which reflects the same relationships is then sought. Quite a large number of neighbours needs to be selected for the data to not collapse in on itself. When a large number of neighbours is selected the embedding is more linear and begins to look like PCA. However, the algorithm does *not* converge to PCA in the limit as the number of neighbors approaches $$n$$. 
 
 
 ```python
@@ -466,7 +467,7 @@ _ = legend_to_the_right(ax)
 ```
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_38_0.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_38_0.png)
 
 
 ### t-SNE (t-distributed Stochastic Neighbour Embedding)
@@ -483,7 +484,7 @@ _ = legend_to_the_right(ax)
 ```
 
 
-![png]({{ site.url }}/assets/posts/images/2017-02-08-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_41_0.png)
+![png]({{ site.base_url }}{{ site.url }}/assets/posts/images/2017-02-10-Blastocyst-Development-in-Mice%3A-Single-Cell-TaqMan-Arrays/output_41_0.png)
 
 
 #### work funded by the BioPreDyn and MLPM projects, it is a collaboration with Nicolas Durrande, Johannes Jaeger.

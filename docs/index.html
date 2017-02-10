@@ -14,13 +14,14 @@ body_class: home-intro
     <div class="intro-desc">
         <h3>Accepted Submissions</h3>
         {% for post in site.posts %}
-                <div class="button-table">
-                    <a href="{{ site.baseurl }}{{ post.url }}" class="button button-ghost" role="button">{{ post.title }}</a>
-                </div>
+            {% if post.accepted %}
+            <div class="button-table">
+                <a href="{{ site.files_url }}{{ post.notebook_url }}" class="button button-ghost" role="button">{{ post.title }}</a>
+            </div>
+            {% endif %}
         {% endfor %}
         <h3>Submissions under Review</h3>
-        {{ site.github.repo_pages }}
-        {% for pull in site.github.repository.pulls %}
+        {% for pull in site.github.pulls %}
                 <div class="button-table">
                     <a href="{{ pull.url }}" class="button button-ghost" role="button">{{ pull.name }}</a>
                 </div>
