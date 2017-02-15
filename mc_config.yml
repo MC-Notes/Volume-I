@@ -4,4 +4,4 @@ backend: python
 # Workflow version to use for running the notebooks in this volume.
 # This is the way the submission process is being handled.
 # Corresponds to tag version on the backends repo of mc-notes.
-workflow_version: 1.0
+workflow_version: v0.1-alpha
