@@ -1,7 +1,7 @@
 accepted: 'false'
 creators:
 - {affiliation: University of Sheffield, name: 'Zwiessele, Max'}
-date: 2017-02-21 17:02:36 +0000
+date: 2017-02-21 17:23:38 +0000
 description: In this notebook we show the progress from simple Bayesian linear regression
   to Gaussian processes. We show the weight space and function space of GPs using
   GPy. We focus on using custom base functions to create kernels and do Bayesian estimates
