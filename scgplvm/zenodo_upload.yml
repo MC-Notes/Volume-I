@@ -1,0 +1,61 @@
+created: '2017-02-21T17:05:26.950279+00:00'
+doi: 10.5072/zenodo.65842
+doi_url: https://doi.org/10.5072/zenodo.65842
+files:
+- checksum: b4ba5663c35bd5860b7c053eaa9520c3
+  filename: executed_notebook.ipynb
+  filesize: 588892
+  id: ce8274dd-09cd-4600-92ea-c0b22e144775
+  links: {download: 'https://sandbox.zenodo.org/api/files/3f8cc7cd-4bb7-4b00-a462-b02ec9d35beb/executed_notebook.ipynb',
+    self: 'https://sandbox.zenodo.org/api/deposit/depositions/65400/files/ce8274dd-09cd-4600-92ea-c0b22e144775'}
+- checksum: d4dfd03e020b80dbc826754009bf0eef
+  filename: requirements.txt
+  filesize: 47
+  id: fc17ab86-1c0f-42b9-aaeb-4846a8a70db1
+  links: {download: 'https://sandbox.zenodo.org/api/files/3f8cc7cd-4bb7-4b00-a462-b02ec9d35beb/requirements.txt',
+    self: 'https://sandbox.zenodo.org/api/deposit/depositions/65400/files/fc17ab86-1c0f-42b9-aaeb-4846a8a70db1'}
+- checksum: 97e9e9788aa42e97a64d04879155f088
+  filename: metadata.yml
+  filesize: 1278
+  id: 379562d4-bad9-4273-8957-4234f22d5fc6
+  links: {download: 'https://sandbox.zenodo.org/api/files/3f8cc7cd-4bb7-4b00-a462-b02ec9d35beb/metadata.yml',
+    self: 'https://sandbox.zenodo.org/api/deposit/depositions/65400/files/379562d4-bad9-4273-8957-4234f22d5fc6'}
+id: 65842
+links: {badge: 'https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.65842.svg', bucket: 'https://sandbox.zenodo.org/api/files/3f8cc7cd-4bb7-4b00-a462-b02ec9d35beb',
+  doi: 'https://doi.org/10.5072/zenodo.65842', record: 'https://sandbox.zenodo.org/api/records/65842',
+  record_html: 'https://sandbox.zenodo.org/record/65842'}
+metadata:
+  access_right: open
+  communities:
+  - {identifier: ecfunded}
+  - {identifier: zenodo}
+  creators:
+  - {affiliation: University of Sheffield, name: 'Zwiessele, Max'}
+  - {affiliation: EMBL EBI Hinxton, name: 'Stegle, Oliver'}
+  - {affiliation: University of Sheffield, name: 'Lawrence, Neil'}
+  description: In this notebook we follow (Buettner and Theis, 2012) and use the GP-LVM
+    to analyze some single cell data from (Guo et al., 2010). They performed qPCR
+    TaqMan array on single cells from the developing blastocyst in mouse. The data
+    is taken from the early stages of development when the Blastocyst is forming.
+    At the 32 cell stage the data is already separated into the trophectoderm (TE)
+    which goes onto form the placenta and the inner cellular mass (ICM). The ICM further
+    differentiates into the epiblast (EPI)---which gives rise to the endoderm, mesoderm
+    and ectoderm---and the primitive endoderm (PE) which develops into the amniotic
+    sack. Guo et al selected 48 genes for expression measurement. They labelled the
+    resulting cells and their labels are included as an aide to visualization.
+  doi: 10.5072/zenodo.65842
+  grants:
+  - {id: '316861'}
+  keywords: [GPLVM, Dimensionality Reduction, Single cell gene expression]
+  license: CC-BY-4.0
+  prereserve_doi: {doi: 10.5072/zenodo.65842, recid: 65842}
+  publication_date: '2017-02-21'
+  publication_type: other
+  title: 'Blastocyst Development in Mice: Single Cell TaqMan Arrays'
+  upload_type: publication
+modified: '2017-02-21T17:05:31.163094+00:00'
+owner: 47
+record_id: 65842
+state: done
+submitted: true
+title: 'Blastocyst Development in Mice: Single Cell TaqMan Arrays'
