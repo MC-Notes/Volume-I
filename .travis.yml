@@ -12,4 +12,4 @@ env:
 install:
 - source mc_setup.sh
 script:
-- source travis_script.sh
+- source backend/travis_script.sh
