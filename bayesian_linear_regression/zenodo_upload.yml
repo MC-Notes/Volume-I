@@ -1,0 +1,58 @@
+!!python/unicode 'created': !!python/unicode '2017-02-21T16:46:07.125969+00:00'
+!!python/unicode 'doi': !!python/unicode '10.5072/zenodo.65839'
+!!python/unicode 'doi_url': !!python/unicode 'https://doi.org/10.5072/zenodo.65839'
+!!python/unicode 'files':
+- !!python/unicode 'checksum': !!python/unicode '99337afac7cbd6dc6bbb290d1e416fec'
+  !!python/unicode 'filename': !!python/unicode 'executed_notebook.ipynb'
+  !!python/unicode 'filesize': 2283988
+  !!python/unicode 'id': !!python/unicode '106dfa82-3307-4c41-871e-bddf4761aed9'
+  !!python/unicode 'links': {!!python/unicode 'download': !!python/unicode 'https://sandbox.zenodo.org/api/files/bd98a52b-f75f-42b0-a211-6428b68832cb/executed_notebook.ipynb',
+    !!python/unicode 'self': !!python/unicode 'https://sandbox.zenodo.org/api/deposit/depositions/65353/files/106dfa82-3307-4c41-871e-bddf4761aed9'}
+- !!python/unicode 'checksum': !!python/unicode '30ee01539e7950967fc043aa5beb16ca'
+  !!python/unicode 'filename': !!python/unicode 'requirements.txt'
+  !!python/unicode 'filesize': 59
+  !!python/unicode 'id': !!python/unicode '96323dff-4c9b-483a-aaaf-b218972bb61c'
+  !!python/unicode 'links': {!!python/unicode 'download': !!python/unicode 'https://sandbox.zenodo.org/api/files/bd98a52b-f75f-42b0-a211-6428b68832cb/requirements.txt',
+    !!python/unicode 'self': !!python/unicode 'https://sandbox.zenodo.org/api/deposit/depositions/65353/files/96323dff-4c9b-483a-aaaf-b218972bb61c'}
+- !!python/unicode 'checksum': !!python/unicode '747316d092c0547114e1d6d291235c52'
+  !!python/unicode 'filename': !!python/unicode 'metadata.yml'
+  !!python/unicode 'filesize': 636
+  !!python/unicode 'id': !!python/unicode '5f7b2b64-f1b9-4413-9d87-308d522a287e'
+  !!python/unicode 'links': {!!python/unicode 'download': !!python/unicode 'https://sandbox.zenodo.org/api/files/bd98a52b-f75f-42b0-a211-6428b68832cb/metadata.yml',
+    !!python/unicode 'self': !!python/unicode 'https://sandbox.zenodo.org/api/deposit/depositions/65353/files/5f7b2b64-f1b9-4413-9d87-308d522a287e'}
+!!python/unicode 'id': 65839
+!!python/unicode 'links': {!!python/unicode 'badge': !!python/unicode 'https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.65839.svg',
+  !!python/unicode 'bucket': !!python/unicode 'https://sandbox.zenodo.org/api/files/bd98a52b-f75f-42b0-a211-6428b68832cb',
+  !!python/unicode 'doi': !!python/unicode 'https://doi.org/10.5072/zenodo.65839',
+  !!python/unicode 'record': !!python/unicode 'https://sandbox.zenodo.org/api/records/65839',
+  !!python/unicode 'record_html': !!python/unicode 'https://sandbox.zenodo.org/record/65839'}
+!!python/unicode 'metadata':
+  !!python/unicode 'access_right': !!python/unicode 'open'
+  !!python/unicode 'communities':
+  - {!!python/unicode 'identifier': !!python/unicode 'ecfunded'}
+  - {!!python/unicode 'identifier': !!python/unicode 'zenodo'}
+  !!python/unicode 'creators':
+  - {!!python/unicode 'affiliation': !!python/unicode 'University of Sheffield', !!python/unicode 'name': !!python/unicode 'Zwiessele,
+      Max'}
+  !!python/unicode 'description': !!python/unicode 'In this notebook we show the progress
+    from simple Bayesian linear regression to Gaussian processes. We show the weight
+    space and function space of GPs using GPy. We focus on using custom base functions
+    to create kernels and do Bayesian estimates of kernel parameters on the base functions.'
+  !!python/unicode 'doi': !!python/unicode '10.5072/zenodo.65839'
+  !!python/unicode 'grants':
+  - {!!python/unicode 'id': !!python/unicode '316861'}
+  !!python/unicode 'keywords': [!!python/unicode 'Gaussian processes', !!python/unicode 'Bayesian
+      Linear Regression', !!python/unicode 'Kernels']
+  !!python/unicode 'license': !!python/unicode 'CC-BY-4.0'
+  !!python/unicode 'prereserve_doi': {!!python/unicode 'doi': !!python/unicode '10.5072/zenodo.65839',
+    !!python/unicode 'recid': 65839}
+  !!python/unicode 'publication_date': !!python/unicode '2017-02-21'
+  !!python/unicode 'publication_type': !!python/unicode 'other'
+  !!python/unicode 'title': !!python/unicode 'Bayesian Linear Regression using GPy'
+  !!python/unicode 'upload_type': !!python/unicode 'publication'
+!!python/unicode 'modified': !!python/unicode '2017-02-21T16:46:29.416520+00:00'
+!!python/unicode 'owner': 47
+!!python/unicode 'record_id': 65839
+!!python/unicode 'state': !!python/unicode 'done'
+!!python/unicode 'submitted': true
+!!python/unicode 'title': !!python/unicode 'Bayesian Linear Regression using GPy'
