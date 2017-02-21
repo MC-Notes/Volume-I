@@ -1,6 +1,11 @@
 baseurl: /Issue1
 port: 4001
 
+# accepted and review collections:
+collections:
+  - accepted
+  - under_review
+
 files_url: https://github.com/MC-Notes/Issue1/blob/master/
 
 # Permalinks

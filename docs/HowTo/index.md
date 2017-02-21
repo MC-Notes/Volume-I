@@ -6,13 +6,14 @@ subtitle: a new Notebook
 
 Submissions are [pull requests](https://help.github.com/articles/about-pull-requests/) from a [fork](https://guides.github.com/activities/forking/) to the master branch of the selected issue. The review process will be completely open to follow and interaction with the author is greatly appreciated. The work included in notebooks does not need to be published otherwise. This is meant to be a publication platform for usefull scripts for fellow researchers to use in their workflow.
 
-The structure of the notebook should include:
+* In your fork create a new filder with a descriptive name (name **cannot** include whitespaces, mask with underscore _, e.g. bayesian_linear_regression).
+* The notebook should include:
  - Name of the notebook.
  - Author names, contact and short summary (abstract).
  - Cell description and cells to run the code. 
  - Conclusion \& [References](#References)
 
-# Files to include
+## Files to include
 - `\<notebook_name\>.ipynb` 
   Jupyter notebook runnable in python 3. 
   The notebook has to run through without any user input. 
@@ -41,5 +42,5 @@ The structure of the notebook should include:
 
 *No other files are allowed, accompanying scripts should be included into the notebook at the appropriate position.*
   
-# References
+## References
 We recommend using calysto document tools from the calysto notebook extensions https://github.com/Calysto/notebook-extensions, which allows you to reference bibtex style and include the bibliography directly into the notebook. 
