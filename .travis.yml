@@ -10,9 +10,6 @@ env:
   global:
     secure: qdLVL0MjXVItsjvT3aAEldXSXpYkQDhAlxx+K+1Q3ro/99OTWmUJBUfhfE3kY3MVk9X484IeoqFsceVTDLHjEajolxKtiWdDpBrd7rFLKKAzSGN3gGSw1B7DTUpViXwXQx7yDqeyysyhRuxJWqaeN28wqhqqEJlJFeiDTWP8YY3VNO0GkWzCBPX+uWSj9bBNibmCpJhc8AY7oO/3ZVa3AL8ynqTV2bG/XiJDvkyD6FCpWuimIW8ndcBZLfHhubRIiYcq63ussYItK1HaZZrdBnH6DyZDEtcI2kutJF6jx0C5aM+gN1xZuLsMbBvwfYlIWHeUBW7RbM4e1VEUll1ySCnb7rT1tv/V/3kTp0dJe7QuXfEULdiNPZUAmv/ATLpLFO4zD0kJ4HnoVb2VukZD0dIFL5KtJalPdM+liIvGA03oz2XKJu8yqKTqgvBb92Jq9IGaauHvWTyXghPfuywSS+Y3fow2SwVe0BUyYq+sIspcIi4cAOzggBTX7vIIGZsfdoF+T6KqiQNfkxwMq91Y7RZ+rGtjjweY1nPLR0CmzN819RKqqD4d+sKukIreHEzG+mt06j4Sc2rEIVRi0rfKDsLrymUu5sNmrwhjV3Nq63uETSyjBVn9GRUnCfLgJpnfnaxqZjg/1aUT6fOyhrSEd6Qy4G+poz8yzgBpkplB8gU=
 install:
-- https://github.com/MC-Notes/backend/raw/master/mc_download_backend.sh
-- source mc_download_backend
-- source backend/travis_setup.sh
-- source backend/travis_login.sh
+- source mc_setup.sh
 script:
 - source travis_script.sh
