@@ -1,4 +1,4 @@
-accepted: 'yes'
+accepted: True
 creators:
 - {affiliation: University of Sheffield, name: 'Zwiessele, Max'}
 - {affiliation: EMBL EBI Hinxton, name: 'Stegle, Oliver'}
