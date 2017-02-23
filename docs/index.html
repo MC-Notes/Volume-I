@@ -4,7 +4,7 @@ title: MC-Notes
 subtitle: Monthly Correspondance: Notes
 ---
 
-
+<div class="intro-desc">
         <h3>Accepted Submissions</h3>
         {% for post in site.accepted %}
             <div class="button-table">
@@ -17,4 +17,4 @@ subtitle: Monthly Correspondance: Notes
                 <a href="{{ site.files_url }}{{ post.notebook_url }}" class="button button-ghost" role="button">{{ post.title }} <br> <p class="intro-subtitle">accepted at {{ post.date }}</p></a>
             </div>
         {% endfor %}
-   
+</div>   
