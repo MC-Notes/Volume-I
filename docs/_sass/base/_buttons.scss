@@ -21,7 +21,7 @@
 
   &:hover,
   &:focus {
-    background-color: shade($primary-color, 20%);
+    background-color: darken($primary-color, 20%);
     color: $white-color;
   }
 
@@ -45,17 +45,20 @@
     margin-bottom: 8pt;
     padding: $small-spacing;
     width: 100%;
+    overflow-x: auto;
 
     &:hover,
     &:focus,
     &:active {
-      background-color: rgba($white-color, .1);
+      background-color: darken($primary-color, 20%);
     }
   }
 }
 
 .button-table {
   display: table;
+  table-layout: fixed;
+  overflow-x: auto;
   margin-bottom: 8pt;
   width: 100%;
 }

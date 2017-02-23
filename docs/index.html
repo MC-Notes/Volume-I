@@ -18,15 +18,11 @@ layout: blank
        <div class="intro-desc">
         <h3>Accepted Submissions</h3>
         {% for post in site.accepted %}
-            <div class="button-table">
-                <a href="{{ site.files_url }}{{ post.notebook_url }}" class="button button-ghost" role="button">{{ post.title }} <br> <p class="intro-subtitle">accepted at {{ post.date }}</p></a>
-            </div>
+            {% include entry.html %}
         {% endfor %}
         <h3>Submissions under Review</h3>
         {% for post in site.under_review %}
-            <div class="button-table">
-                <a href="{{ site.files_url }}{{ post.notebook_url }}" class="button button-ghost" role="button">{{ post.title }} <br> <p class="intro-subtitle">accepted at {{ post.date }}</p></a>
-            </div>
+            {% include entry.html %}
         {% endfor %}
     </div>
   </div>
