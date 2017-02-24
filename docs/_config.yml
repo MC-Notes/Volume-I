@@ -3,8 +3,10 @@ port: 4001
 
 # accepted and review collections:
 collections:
-  - accepted
-  - under_review
+  accepted:
+    output: true
+  under_review:
+    output: true
 
 files_url: https://github.com/MC-Notes/Issue1/blob/master/
 

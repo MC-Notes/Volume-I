@@ -1,5 +1,9 @@
-<a href="{{ site.files_url }}{{ post.notebook_url }}" class="button button-ghost" role="button">
-  <div class="button-table post-item">
-	<span class="post-title">{{ post.title }}</span><br><span class="post-meta">accepted at {{ post.date }}</span>
-  </div>
-</a>
+<div class="submission-tile">
+	<h2 class="submission-title">
+		<a href="{{ post.url | prepend:site.baseurl }}">{{ post.title }}</a>
+	</h2>
+	<p class="submission-button">
+		<a href="{{ post.notebook_url | prepend:site.files_url }}">Github</a>
+	</p>	
+	<h4 class="submission-meta">accepted at {{ post.date }}</h4>
+</div>

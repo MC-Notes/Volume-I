@@ -1,0 +1,43 @@
+.submission-list
+{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+  display: block;
+  text-align: -webkit-match-parent;
+}
+
+.submission-tile
+{
+  display: block;
+  color: $white-color;
+  background-color: $primary-color;
+  padding: .2em .8em;
+  text-decoration: none;
+  margin-bottom: .2em;
+}
+
+.submission-title {
+  font-weight: $font-weight-light;
+  width: 90%;
+}
+
+.submission-meta {
+  font-weight: $font-weight-light;
+  font-style: italic;
+  font-size: .8em;
+}
+
+.submission-button {
+  width: 10%;
+  float: right;
+  height: 100%;
+  background-color: #24292e;
+}
+
+.submission-list a {
+  color: $white-color;
+
+}
+

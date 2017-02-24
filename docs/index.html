@@ -3,28 +3,34 @@ layout: blank
 ---
 
 <section>
-<div class="intro">
-  {% include navbar.html %}
+  <div class="intro">
+    {% include navbar.html %}
 
-  <div class="intro-in wrap">
+    <div class="intro-in wrap">
 
-    <h1 class="intro-title">MC-Notes</h1>
-    <h2 class="intro-subtitle">Monthly Correspondance: Notes</h2>
-  
+      <h1 class="intro-title">MC-Notes</h1>
+      <h2 class="intro-subtitle">Monthly Correspondance: Notes</h2>
+    
+    </div>
   </div>
-</div>
 
   <div class="post-content wrap">
-       <div class="intro-desc">
-        <h3>Accepted Submissions</h3>
-        {% for post in site.accepted %}
-            {% include entry.html %}
-        {% endfor %}
-        <h3>Submissions under Review</h3>
-        {% for post in site.under_review %}
-            {% include entry.html %}
-        {% endfor %}
-    </div>
+    <h3>Accepted Submissions</h3>
+    <ul class="submission-list">
+      {% for post in site.accepted %}
+        <li class="sbumission-item">
+          {% include entry.html %}
+        </li>
+      {% endfor %}
+    </ul>
+    <h3>Submissions under Review</h3>
+    <ul class="submission-list">
+      {% for post in site.under_review %}
+        <li class="sbumission-item">
+          {% include entry.html %}
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 
 </section>
