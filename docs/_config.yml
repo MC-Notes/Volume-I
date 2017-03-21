@@ -1,4 +1,4 @@
-baseurl: /Issue1
+baseurl: /Volume-I
 port: 4001
 
 # accepted and review collections:
@@ -8,7 +8,7 @@ collections:
   under_review:
     output: true
 
-files_url: https://github.com/MC-Notes/Issue1/blob/master/
+files_url: https://github.com/MC-Notes/Volume-I/blob/master/
 
 # Permalinks
 permalink: /:year/:month/:day/:title/
